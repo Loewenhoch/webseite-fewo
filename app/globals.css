@@ -1,0 +1,211 @@
+﻿@import "tailwindcss";
+
+:root {
+  --night-950: #060b16;
+  --night-900: #0b1428;
+  --night-800: #10203a;
+  --petrol-700: #14455a;
+  --slate-200: #d7e2ef;
+  --ice-100: #f2f7fd;
+  --champagne-400: #c4d0de;
+  --champagne-500: #97a8bc;
+}
+
+@theme inline {
+  --font-sans: var(--font-sora);
+  --font-display: var(--font-cormorant);
+}
+
+* {
+  border-color: rgb(148 163 184 / 0.2);
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sora), sans-serif;
+  color: var(--ice-100);
+  background:
+    radial-gradient(90rem 45rem at 85% -10%, rgb(20 69 90 / 0.22), transparent 55%),
+    radial-gradient(75rem 40rem at 0% 0%, rgb(42 66 117 / 0.3), transparent 50%),
+    linear-gradient(180deg, var(--night-900) 0%, var(--night-950) 35%, #090f1e 100%);
+}
+
+.font-display {
+  font-family: var(--font-cormorant), serif;
+}
+
+.headline-xl {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(2.3rem, 6vw, 5.1rem);
+  line-height: 0.94;
+  letter-spacing: 0.015em;
+}
+
+.headline-lg {
+  font-family: var(--font-cormorant), serif;
+  font-size: clamp(1.8rem, 4vw, 3.4rem);
+  line-height: 1.02;
+  letter-spacing: 0.012em;
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.34rem 0.86rem;
+  border-radius: 999px;
+  border: 1px solid rgb(215 226 239 / 0.25);
+  background: rgb(8 19 38 / 0.5);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+  color: rgb(217 234 255 / 0.8);
+}
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgb(215 226 239 / 0.5), transparent);
+}
+
+.lux-card {
+  border: 1px solid rgb(176 196 224 / 0.2);
+  background: linear-gradient(160deg, rgb(14 30 55 / 0.9), rgb(10 20 38 / 0.72));
+  box-shadow: 0 26px 56px -38px rgb(1 4 10 / 0.8);
+}
+
+.glass-panel {
+  border: 1px solid rgb(222 235 252 / 0.2);
+  background: rgb(12 22 41 / 0.55);
+  backdrop-filter: blur(12px);
+}
+
+.hero-zoom {
+  animation: heroZoom 22s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from {
+    transform: scale(1.04);
+  }
+  to {
+    transform: scale(1.12);
+  }
+}
+
+.snow-layer {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.snow-dot {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgb(255 255 255 / 0.75);
+  filter: blur(0.1px);
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translate3d(0, -8vh, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 0.88;
+  }
+  100% {
+    transform: translate3d(1.7rem, 105vh, 0);
+    opacity: 0;
+  }
+}
+
+.gallery-masonry {
+  column-count: 1;
+  column-gap: 1rem;
+}
+
+@media (min-width: 740px) {
+  .gallery-masonry {
+    column-count: 2;
+  }
+}
+
+@media (min-width: 1080px) {
+  .gallery-masonry {
+    column-count: 3;
+  }
+}
+
+.gallery-item {
+  break-inside: avoid;
+}
+
+.primary-btn {
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #1a2333;
+  background: linear-gradient(130deg, #eef3f8, #c5d0dd 64%, #9eacbc);
+  box-shadow: 0 14px 28px -14px rgb(5 7 11 / 0.75);
+  transition: transform 0.32s ease, box-shadow 0.32s ease, filter 0.32s ease;
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 32px -15px rgb(5 7 11 / 0.82);
+  filter: saturate(1.06);
+}
+
+.secondary-btn {
+  border-radius: 999px;
+  padding: 0.85rem 1.4rem;
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: rgb(233 243 255);
+  border: 1px solid rgb(215 226 239 / 0.35);
+  background: rgb(11 24 44 / 0.5);
+  transition: transform 0.32s ease, border-color 0.32s ease, background-color 0.32s ease;
+}
+
+.secondary-btn:hover {
+  transform: translateY(-2px);
+  border-color: rgb(209 221 235 / 0.6);
+  background: rgb(16 30 56 / 0.78);
+}
+
+.form-input {
+  width: 100%;
+  border-radius: 0.95rem;
+  border: 1px solid rgb(177 196 222 / 0.32);
+  background: rgb(9 18 35 / 0.56);
+  padding: 0.7rem 0.84rem;
+  color: rgb(234 243 255);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+}
+
+.form-input:focus {
+  border-color: rgb(188 203 221 / 0.82);
+  box-shadow: 0 0 0 3px rgb(188 203 221 / 0.22);
+  background: rgb(11 23 44 / 0.84);
+}
+
+.text-muted {
+  color: rgb(198 211 230 / 0.78);
+}
+
+.text-strong {
+  color: rgb(240 247 255 / 0.97);
+}
