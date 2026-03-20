@@ -10,7 +10,10 @@ import { inquiryData } from "@/lib/site-data";
 type InquiryFormState = {
   firstName: string;
   lastName: string;
-  address: string;
+  street: string;
+  zipCode: string;
+  city: string;
+  country: string;
   email: string;
   phone: string;
   arrival: string;
@@ -25,7 +28,10 @@ type InquiryFormErrors = Partial<Record<keyof InquiryFormState, string>>;
 const initialForm: InquiryFormState = {
   firstName: "",
   lastName: "",
-  address: "",
+  street: "",
+  zipCode: "",
+  city: "",
+  country: "",
   email: "",
   phone: "",
   arrival: "",
@@ -40,7 +46,10 @@ function validateForm(form: InquiryFormState): InquiryFormErrors {
 
   if (!form.firstName.trim()) errors.firstName = "Bitte Vornamen eingeben.";
   if (!form.lastName.trim()) errors.lastName = "Bitte Nachnamen eingeben.";
-  if (!form.address.trim()) errors.address = "Bitte Adresse eingeben.";
+  if (!form.street.trim()) errors.street = "Bitte Strasse eingeben.";
+  if (!form.zipCode.trim()) errors.zipCode = "Bitte PLZ eingeben.";
+  if (!form.city.trim()) errors.city = "Bitte Ort eingeben.";
+  if (!form.country.trim()) errors.country = "Bitte Land eingeben.";
 
   if (!form.email.trim()) {
     errors.email = "Bitte E-Mail-Adresse eingeben.";
@@ -171,15 +180,47 @@ export function InquirySection() {
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <label className="text-sm text-slate-100/90 sm:col-span-2">
-                  Adresse
+                  Strasse
                   <input
                     className="form-input mt-1"
-                    value={form.address}
-                    onChange={(event) => setForm((prev) => ({ ...prev, address: event.target.value }))}
+                    value={form.street}
+                    onChange={(event) => setForm((prev) => ({ ...prev, street: event.target.value }))}
                   />
-                  {errors.address ? <span className="mt-1 block text-xs text-red-300">{errors.address}</span> : null}
+                  {errors.street ? <span className="mt-1 block text-xs text-red-300">{errors.street}</span> : null}
                 </label>
 
+                <label className="text-sm text-slate-100/90">
+                  PLZ
+                  <input
+                    className="form-input mt-1"
+                    value={form.zipCode}
+                    onChange={(event) => setForm((prev) => ({ ...prev, zipCode: event.target.value }))}
+                  />
+                  {errors.zipCode ? <span className="mt-1 block text-xs text-red-300">{errors.zipCode}</span> : null}
+                </label>
+
+                <label className="text-sm text-slate-100/90">
+                  Ort
+                  <input
+                    className="form-input mt-1"
+                    value={form.city}
+                    onChange={(event) => setForm((prev) => ({ ...prev, city: event.target.value }))}
+                  />
+                  {errors.city ? <span className="mt-1 block text-xs text-red-300">{errors.city}</span> : null}
+                </label>
+
+                <label className="text-sm text-slate-100/90 sm:col-span-2">
+                  Land
+                  <input
+                    className="form-input mt-1"
+                    value={form.country}
+                    onChange={(event) => setForm((prev) => ({ ...prev, country: event.target.value }))}
+                  />
+                  {errors.country ? <span className="mt-1 block text-xs text-red-300">{errors.country}</span> : null}
+                </label>
+              </div>
+
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <label className="text-sm text-slate-100/90">
                   E-Mail
                   <input
