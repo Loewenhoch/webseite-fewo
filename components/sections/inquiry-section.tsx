@@ -69,21 +69,24 @@ export function InquirySection() {
   const [form, setForm] = useState<InquiryFormState>(initialForm);
   const [errors, setErrors] = useState<InquiryFormErrors>({});
   const [submitState, setSubmitState] = useState<"idle" | "success" | "error">("idle");
+  const [submitErrorMessage, setSubmitErrorMessage] = useState<string>("");
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const minDeparture = useMemo(() => form.arrival || undefined, [form.arrival]);
 
-  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmitWithDetailedError = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validateForm(form);
     setErrors(nextErrors);
 
     if (Object.keys(nextErrors).length > 0) {
       setSubmitState("error");
+      setSubmitErrorMessage("Bitte die markierten Felder pruefen.");
       return;
     }
 
     setSubmitState("idle");
+    setSubmitErrorMessage("");
     setIsSubmitting(true);
 
     try {
@@ -96,14 +99,19 @@ export function InquirySection() {
       });
 
       if (!response.ok) {
-        throw new Error("inquiry_send_failed");
+        const responseData = (await response.json().catch(() => null)) as { error?: string } | null;
+        const serverError = responseData?.error || "Anfrage konnte nicht gesendet werden.";
+        throw new Error(serverError);
       }
 
       setSubmitState("success");
       setForm(initialForm);
       setErrors({});
-    } catch {
+      setSubmitErrorMessage("");
+    } catch (error) {
       setSubmitState("error");
+      const errorMessage = error instanceof Error ? error.message : "Anfrage konnte nicht gesendet werden.";
+      setSubmitErrorMessage(errorMessage);
     } finally {
       setIsSubmitting(false);
     }
@@ -131,7 +139,7 @@ export function InquirySection() {
 
           <MotionReveal delay={0.08}>
             <motion.form
-              onSubmit={onSubmit}
+              onSubmit={onSubmitWithDetailedError}
               noValidate
               initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -270,7 +278,7 @@ export function InquirySection() {
               {submitState === "error" ? (
                 <p className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-300/28 bg-red-900/20 px-3 py-2 text-sm text-red-200">
                   <CircleAlert size={16} aria-hidden="true" />
-                  Bitte Eingaben pruefen oder spaeter erneut versuchen.
+                  {submitErrorMessage || "Bitte Eingaben pruefen oder spaeter erneut versuchen."}
                 </p>
               ) : null}
             </motion.form>
