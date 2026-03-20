@@ -1,5 +1,3 @@
-import fs from "node:fs";
-import path from "node:path";
 import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
@@ -134,60 +132,6 @@ function formatHtml(payload: InquiryPayload): string {
   ].join("");
 }
 
-function stripWrappingQuotes(value: string): string {
-  const trimmed = value.trim();
-  if (trimmed.length >= 2) {
-    if (trimmed.startsWith('"') && trimmed.endsWith('"')) {
-      return trimmed.slice(1, -1);
-    }
-    if (trimmed.startsWith("'") && trimmed.endsWith("'")) {
-      return trimmed.slice(1, -1);
-    }
-  }
-
-  return trimmed;
-}
-
-function readEnvFromLocalFile(name: string): string | undefined {
-  const cwd = process.cwd();
-  const candidates = [
-    path.join(cwd, ".env.local"),
-    path.join(cwd, "..", ".env.local"),
-    path.join(cwd, "..", "..", ".env.local"),
-  ];
-
-  for (const filePath of candidates) {
-    if (!fs.existsSync(filePath)) {
-      continue;
-    }
-
-    const content = fs.readFileSync(filePath, "utf8").replace(/^\uFEFF/, "");
-    const lines = content.split(/\r?\n/);
-
-    for (const rawLine of lines) {
-      const line = rawLine.trim();
-      if (!line || line.startsWith("#")) {
-        continue;
-      }
-
-      const separatorIndex = line.indexOf("=");
-      if (separatorIndex <= 0) {
-        continue;
-      }
-
-      const key = line.slice(0, separatorIndex).trim().replace(/^\uFEFF/, "");
-      if (key !== name) {
-        continue;
-      }
-
-      const value = line.slice(separatorIndex + 1);
-      return stripWrappingQuotes(value);
-    }
-  }
-
-  return undefined;
-}
-
 function getEnv(name: string): string | undefined {
   const direct = process.env[name];
   if (typeof direct === "string" && direct.trim()) {
@@ -198,17 +142,6 @@ function getEnv(name: string): string | undefined {
   const bomDirect = process.env[`${bomPrefix}${name}`];
   if (typeof bomDirect === "string" && bomDirect.trim()) {
     return bomDirect.trim();
-  }
-
-  for (const [key, value] of Object.entries(process.env)) {
-    if (key.replace(/^\uFEFF/, "") === name && typeof value === "string" && value.trim()) {
-      return value.trim();
-    }
-  }
-
-  const fromFile = readEnvFromLocalFile(name);
-  if (typeof fromFile === "string" && fromFile.trim()) {
-    return fromFile.trim();
   }
 
   return undefined;
