@@ -10,6 +10,7 @@ import { inquiryData } from "@/lib/site-data";
 type InquiryFormState = {
   firstName: string;
   lastName: string;
+  address: string;
   email: string;
   phone: string;
   arrival: string;
@@ -24,6 +25,7 @@ type InquiryFormErrors = Partial<Record<keyof InquiryFormState, string>>;
 const initialForm: InquiryFormState = {
   firstName: "",
   lastName: "",
+  address: "",
   email: "",
   phone: "",
   arrival: "",
@@ -38,6 +40,7 @@ function validateForm(form: InquiryFormState): InquiryFormErrors {
 
   if (!form.firstName.trim()) errors.firstName = "Bitte Vornamen eingeben.";
   if (!form.lastName.trim()) errors.lastName = "Bitte Nachnamen eingeben.";
+  if (!form.address.trim()) errors.address = "Bitte Adresse eingeben.";
 
   if (!form.email.trim()) {
     errors.email = "Bitte E-Mail-Adresse eingeben.";
@@ -84,10 +87,21 @@ export function InquirySection() {
     setIsSubmitting(true);
 
     try {
-      // TODO Buchungslogik anbinden: Hier API oder Buchungssystem fur Verfuegbarkeit integrieren.
-      await new Promise((resolve) => setTimeout(resolve, 900));
+      const response = await fetch("/api/inquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(form),
+      });
+
+      if (!response.ok) {
+        throw new Error("inquiry_send_failed");
+      }
+
       setSubmitState("success");
       setForm(initialForm);
+      setErrors({});
     } catch {
       setSubmitState("error");
     } finally {
@@ -148,6 +162,16 @@ export function InquirySection() {
               </div>
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <label className="text-sm text-slate-100/90 sm:col-span-2">
+                  Adresse
+                  <input
+                    className="form-input mt-1"
+                    value={form.address}
+                    onChange={(event) => setForm((prev) => ({ ...prev, address: event.target.value }))}
+                  />
+                  {errors.address ? <span className="mt-1 block text-xs text-red-300">{errors.address}</span> : null}
+                </label>
+
                 <label className="text-sm text-slate-100/90">
                   E-Mail
                   <input
@@ -246,7 +270,7 @@ export function InquirySection() {
               {submitState === "error" ? (
                 <p className="mt-4 inline-flex items-center gap-2 rounded-xl border border-red-300/28 bg-red-900/20 px-3 py-2 text-sm text-red-200">
                   <CircleAlert size={16} aria-hidden="true" />
-                  Bitte die markierten Felder pruefen.
+                  Bitte Eingaben pruefen oder spaeter erneut versuchen.
                 </p>
               ) : null}
             </motion.form>
