@@ -117,12 +117,33 @@ function formatHtml(payload: InquiryPayload): string {
   ].join("");
 }
 
+function getEnv(name: string): string | undefined {
+  const direct = process.env[name];
+  if (typeof direct === "string" && direct.trim()) {
+    return direct.trim();
+  }
+
+  const bomDirect = process.env[`﻿${name}`];
+  if (typeof bomDirect === "string" && bomDirect.trim()) {
+    return bomDirect.trim();
+  }
+
+  for (const [key, value] of Object.entries(process.env)) {
+    if (key.replace(/^\uFEFF/, "") === name && typeof value === "string" && value.trim()) {
+      return value.trim();
+    }
+  }
+
+  return undefined;
+}
+
 function createTransporter() {
-  const host = process.env.SMTP_HOST;
-  const port = Number(process.env.SMTP_PORT ?? "587");
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  const secure = process.env.SMTP_SECURE === "true";
+  const host = getEnv("SMTP_HOST");
+  const portValue = getEnv("SMTP_PORT") ?? "587";
+  const port = Number(portValue);
+  const user = getEnv("SMTP_USER");
+  const pass = getEnv("SMTP_PASS");
+  const secure = (getEnv("SMTP_SECURE") ?? "false").toLowerCase() === "true";
 
   if (!host || !user || !pass || !Number.isFinite(port)) {
     return null;
@@ -157,17 +178,30 @@ export async function POST(request: Request) {
 
     const transporter = createTransporter();
     if (!transporter) {
-      console.error("SMTP ist nicht konfiguriert. Bitte SMTP_* Umgebungsvariablen setzen.");
+      const missing = [
+        getEnv("SMTP_HOST") ? null : "SMTP_HOST",
+        getEnv("SMTP_USER") ? null : "SMTP_USER",
+        getEnv("SMTP_PASS") ? null : "SMTP_PASS",
+        Number.isFinite(Number(getEnv("SMTP_PORT") ?? "587")) ? null : "SMTP_PORT",
+      ].filter(Boolean);
+
+      console.error(
+        "SMTP ist nicht konfiguriert. Bitte SMTP_* Umgebungsvariablen setzen.",
+        missing.length > 0 ? `Fehlend/ungueltig: ${missing.join(", ")}` : "",
+      );
 
       return NextResponse.json(
         {
-          error: "E-Mail-Versand ist nicht konfiguriert.",
+          error:
+            missing.length > 0
+              ? `E-Mail-Versand ist nicht konfiguriert (fehlt: ${missing.join(", ")}).`
+              : "E-Mail-Versand ist nicht konfiguriert.",
         },
         { status: 500 },
       );
     }
 
-    const from = process.env.SMTP_FROM || process.env.SMTP_USER;
+    const from = getEnv("SMTP_FROM") || getEnv("SMTP_USER");
     const subject = `Neue unverbindliche Anfrage - ${payload.firstName} ${payload.lastName}`.trim();
 
     await transporter.sendMail({
