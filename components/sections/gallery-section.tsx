@@ -1,79 +1,141 @@
 ﻿"use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type PointerEvent as ReactPointerEvent } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { X } from "lucide-react";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
-import { galleryImages, type GalleryFilter } from "@/lib/site-data";
-
-const tabs: Array<{ id: GalleryFilter; label: string }> = [
-  { id: "unterkunft", label: "Unterkunft" },
-  { id: "winter", label: "Winter" },
-  { id: "sommer", label: "Sommer" },
-];
+import { galleryData, type GalleryCategoryId } from "@/lib/site-data";
 
 export function GallerySection() {
-  const [activeFilter, setActiveFilter] = useState<GalleryFilter>("unterkunft");
+  const [activeCategory, setActiveCategory] = useState<GalleryCategoryId>("b14");
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [pointerStartX, setPointerStartX] = useState<number | null>(null);
 
-  const filtered = useMemo(
-    () => galleryImages.filter((item) => item.filter === activeFilter),
-    [activeFilter],
+  const filteredImages = useMemo(
+    () => galleryData.images.filter((image) => image.category === activeCategory),
+    [activeCategory],
   );
+
+  useEffect(() => {
+    if (activeIndex === null) {
+      document.body.style.overflow = "";
+      return;
+    }
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setActiveIndex(null);
+      }
+      if (event.key === "ArrowRight") {
+        setActiveIndex((prev) => {
+          if (prev === null) return 0;
+          return (prev + 1) % filteredImages.length;
+        });
+      }
+      if (event.key === "ArrowLeft") {
+        setActiveIndex((prev) => {
+          if (prev === null) return 0;
+          return (prev - 1 + filteredImages.length) % filteredImages.length;
+        });
+      }
+    };
+
+    document.body.style.overflow = "hidden";
+    window.addEventListener("keydown", onKeyDown);
+
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [activeIndex, filteredImages.length]);
+
+  const goPrevious = () => {
+    setActiveIndex((prev) => {
+      if (prev === null) return 0;
+      return (prev - 1 + filteredImages.length) % filteredImages.length;
+    });
+  };
+
+  const goNext = () => {
+    setActiveIndex((prev) => {
+      if (prev === null) return 0;
+      return (prev + 1) % filteredImages.length;
+    });
+  };
+
+  const onPointerDown = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (event.pointerType === "touch" || event.pointerType === "pen") {
+      setPointerStartX(event.clientX);
+    }
+  };
+
+  const onPointerUp = (event: ReactPointerEvent<HTMLDivElement>) => {
+    if (pointerStartX === null) return;
+    const delta = event.clientX - pointerStartX;
+
+    if (delta > 50) {
+      goPrevious();
+    }
+    if (delta < -50) {
+      goNext();
+    }
+
+    setPointerStartX(null);
+  };
 
   return (
     <SectionShell id="galerie" className="py-20 sm:py-24">
       <MotionReveal>
         <span className="section-eyebrow">Galerie</span>
-        <h2 className="headline-lg mt-4 text-white">Kuratierte Einblicke in Winter, Sommer und Unterkunft</h2>
+        <h2 className="headline-lg mt-4 text-white">Bilder nach Bereichen geordnet</h2>
         <p className="mt-3 max-w-3xl text-sm text-muted sm:text-base">
-          Unterkunft zeigt die neuen Bilder aus Wohnung B14 und B4; Winter und Sommer bleiben separat kuratiert.
+          Die Galerie ist nach Wohnungen, Saison und Hausbereich getrennt. Klick auf ein Bild offnet die Grossansicht mit Navigation.
         </p>
       </MotionReveal>
 
-      <MotionReveal delay={0.07} className="mt-6 flex flex-wrap gap-2">
-        {tabs.map((tab) => (
+      <MotionReveal delay={0.06} className="mt-6 flex flex-wrap gap-2">
+        {galleryData.categories.map((category) => (
           <button
-            key={tab.id}
+            key={category.id}
             type="button"
             onClick={() => {
-              setActiveFilter(tab.id);
+              setActiveCategory(category.id);
               setActiveIndex(null);
             }}
             className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
-              activeFilter === tab.id
-                ? "border border-[#bccadb]/55 bg-[#bccadb]/18 text-[#e6eef7]"
+              activeCategory === category.id
+                ? "border border-[#c0d1e4]/60 bg-[#c0d1e4]/18 text-[#eaf1f8]"
                 : "border border-slate-300/25 bg-slate-900/35 text-slate-200/84 hover:bg-slate-800/50"
             }`}
           >
-            {tab.label}
+            {category.label}
           </button>
         ))}
       </MotionReveal>
 
-      <motion.div layout className="gallery-masonry mt-8">
-        {filtered.map((image, index) => (
+      <motion.div layout className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {filteredImages.map((image, index) => (
           <motion.button
-            key={`${image.src}-${activeFilter}-${index}`}
+            key={`${image.src}-${activeCategory}`}
             layout
-            whileHover={{ scale: 1.012 }}
-            transition={{ duration: 0.25 }}
+            whileHover={{ y: -2 }}
+            transition={{ duration: 0.2 }}
             type="button"
             onClick={() => setActiveIndex(index)}
-            className="gallery-item group mb-4 w-full overflow-hidden rounded-2xl border border-slate-300/20 bg-slate-900/45"
+            className="group overflow-hidden rounded-2xl border border-slate-300/20 bg-slate-900/40 text-left"
           >
-            <div className="relative h-64 w-full sm:h-72">
+            <div className="relative h-56 sm:h-60">
               <Image
                 src={image.src}
                 alt={image.alt}
                 fill
-                sizes="(max-width: 1080px) 100vw, 33vw"
+                sizes="(max-width: 1024px) 100vw, 33vw"
                 className="object-cover transition duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 to-transparent" />
-              <p className="absolute bottom-3 left-3 right-3 text-left text-xs text-slate-100/92 sm:text-sm">{image.alt}</p>
+              <p className="absolute bottom-3 left-3 right-3 text-sm text-slate-100/92">{image.title}</p>
             </div>
           </motion.button>
         ))}
@@ -82,40 +144,79 @@ export function GallerySection() {
       <AnimatePresence>
         {activeIndex !== null ? (
           <motion.div
-            key="lightbox"
+            key="gallery-lightbox"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[80] flex items-center justify-center bg-slate-950/92 p-4"
-            onClick={() => setActiveIndex(null)}
+            className="fixed inset-0 z-[90] flex items-center justify-center bg-slate-950/94 px-3 py-6 sm:px-6"
             role="dialog"
             aria-modal="true"
+            aria-label="Bildansicht"
+            onClick={() => setActiveIndex(null)}
           >
             <button
               type="button"
-              className="absolute right-4 top-4 rounded-full border border-slate-200/30 bg-slate-900/40 p-2 text-white"
               onClick={() => setActiveIndex(null)}
-              aria-label="Lightbox schliessen"
+              aria-label="Schliessen"
+              className="absolute right-4 top-4 z-10 rounded-full border border-slate-300/35 bg-slate-900/55 p-2 text-white"
             >
               <X size={18} />
             </button>
 
+            <button
+              type="button"
+              aria-label="Vorheriges Bild"
+              onClick={(event) => {
+                event.stopPropagation();
+                goPrevious();
+              }}
+              className="absolute left-2 rounded-full border border-slate-300/35 bg-slate-900/55 p-2 text-white sm:left-4"
+            >
+              <ChevronLeft size={18} />
+            </button>
+
             <motion.div
-              initial={{ opacity: 0, y: 20, scale: 0.97 }}
+              key={filteredImages[activeIndex].src}
+              initial={{ opacity: 0, y: 18, scale: 0.98 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 8, scale: 0.98 }}
-              transition={{ duration: 0.3 }}
-              className="relative h-[82vh] w-full max-w-6xl"
+              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              transition={{ duration: 0.26 }}
+              className="relative flex h-[82vh] w-full max-w-6xl flex-col"
               onClick={(event) => event.stopPropagation()}
             >
-              <Image
-                src={filtered[activeIndex].src}
-                alt={filtered[activeIndex].alt}
-                fill
-                sizes="100vw"
-                className="rounded-2xl object-contain"
-              />
+              <div
+                className="relative h-full overflow-hidden rounded-2xl"
+                onPointerDown={onPointerDown}
+                onPointerUp={onPointerUp}
+              >
+                <Image
+                  src={filteredImages[activeIndex].src}
+                  alt={filteredImages[activeIndex].alt}
+                  fill
+                  sizes="100vw"
+                  className="object-contain"
+                />
+              </div>
+
+              <div className="mt-3 flex items-center justify-between text-sm text-slate-100/86">
+                <p>{filteredImages[activeIndex].title}</p>
+                <p>
+                  {activeIndex + 1} / {filteredImages.length}
+                </p>
+              </div>
             </motion.div>
+
+            <button
+              type="button"
+              aria-label="Naechstes Bild"
+              onClick={(event) => {
+                event.stopPropagation();
+                goNext();
+              }}
+              className="absolute right-2 rounded-full border border-slate-300/35 bg-slate-900/55 p-2 text-white sm:right-4"
+            >
+              <ChevronRight size={18} />
+            </button>
           </motion.div>
         ) : null}
       </AnimatePresence>

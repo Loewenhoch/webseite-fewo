@@ -1,44 +1,28 @@
-﻿import {
-  Wifi,
-  Car,
-  CookingPot,
-  Snowflake,
-  Mountain,
-  Tv,
-  Bath,
-  Sofa,
-  LucideIcon,
-} from "lucide-react";
+﻿import { Check } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
-import { featureCards } from "@/lib/site-data";
-
-const iconMap: LucideIcon[] = [Wifi, Car, CookingPot, Snowflake, Mountain, Tv, Bath, Sofa];
+import { featuresData } from "@/lib/site-data";
 
 export function FeaturesSection() {
   return (
-    <SectionShell id="ausstattung" className="pb-20 sm:pb-24">
+    <SectionShell id="ausstattung" className="py-20 sm:py-24">
       <MotionReveal>
         <span className="section-eyebrow">Ausstattung</span>
-        <h2 className="headline-lg mt-4 text-white">Komfort, der den Skitag abrundet</h2>
+        <h2 className="headline-lg mt-4 text-white">{featuresData.title}</h2>
+        <p className="mt-3 max-w-3xl text-sm text-muted sm:text-base">{featuresData.subtitle}</p>
       </MotionReveal>
 
-      <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {featureCards.map((card, index) => {
-          const Icon = iconMap[index % iconMap.length];
-
-          return (
-            <MotionReveal key={card.title} delay={index * 0.04}>
-              <article className="lux-card h-full rounded-2xl p-5 transition duration-400 hover:-translate-y-1 hover:border-[#b9c7d8]/45">
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-[#b9c7d8]/45 bg-[#b9c7d8]/10 text-[#dbe6f2]">
-                  <Icon size={18} aria-hidden="true" />
-                </div>
-                <h3 className="mt-4 text-base font-semibold text-strong">{card.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-muted">{card.text}</p>
-              </article>
-            </MotionReveal>
-          );
-        })}
+      <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {featuresData.items.map((item, index) => (
+          <MotionReveal key={item} delay={index * 0.03}>
+            <article className="lux-card h-full rounded-2xl px-4 py-4">
+              <p className="inline-flex items-start gap-2 text-sm leading-relaxed text-slate-100/88">
+                <Check size={15} className="mt-[0.14rem] shrink-0 text-[#cfe0f2]" />
+                {item}
+              </p>
+            </article>
+          </MotionReveal>
+        ))}
       </div>
     </SectionShell>
   );

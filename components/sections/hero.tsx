@@ -2,80 +2,101 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { siteContent } from "@/lib/site-content";
+import { Mountain, Car, Building2 } from "lucide-react";
+import { heroData } from "@/lib/site-data";
+import { SnowParticles } from "@/components/ui/snow-particles";
 
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setActiveIndex((prev) => (prev + 1) % siteContent.heroImages.length);
-    }, 5000);
+      setActiveIndex((prev) => (prev + 1) % heroData.images.length);
+    }, 6800);
 
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section id="top" className="relative isolate min-h-[78svh] overflow-hidden border-b border-slate-200">
-      <div className="absolute inset-0">
-        {siteContent.heroImages.map((image, index) => (
-          <div
-            key={image.src}
-            className={`absolute inset-0 transition-opacity duration-1000 ${index === activeIndex ? "opacity-100" : "opacity-0"}`}
-          >
-            <Image
-              src={image.src}
-              alt={image.alt}
-              fill
-              priority={index === 0}
-              sizes="100vw"
-              className="object-cover"
-            />
-          </div>
-        ))}
-      </div>
+    <section id="top" className="relative isolate min-h-[100svh] overflow-hidden border-b border-slate-300/15">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={heroData.images[activeIndex].src}
+          initial={{ opacity: 0, scale: 1.04 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.1, ease: "easeOut" }}
+          className="absolute inset-0"
+        >
+          <Image
+            src={heroData.images[activeIndex].src}
+            alt={heroData.images[activeIndex].alt}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        </motion.div>
+      </AnimatePresence>
 
-      <div className="absolute inset-0 bg-gradient-to-r from-slate-950/75 via-slate-900/45 to-slate-900/20" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,rgba(226,190,139,0.2),transparent_50%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(4,10,20,0.9),rgba(5,13,26,0.72)_46%,rgba(5,10,20,0.38)_72%,rgba(5,9,18,0.62)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_24%,rgba(191,210,229,0.22),transparent_36%)]" />
+      <SnowParticles />
 
-      <div className="relative mx-auto flex w-full max-w-7xl flex-col justify-end px-5 pb-20 pt-32 sm:px-8 lg:px-12 lg:pb-24">
-        <div className="max-w-3xl text-white">
-          <p className="mb-4 inline-flex rounded-full border border-white/25 bg-white/10 px-4 py-1 text-xs uppercase tracking-[0.24em] text-white/90 backdrop-blur">
-            Premium Unterkunft in Obertauern
-          </p>
-          <h1 className="font-display text-4xl leading-tight text-white sm:text-5xl lg:text-6xl">
-            {siteContent.brand.claim}
-          </h1>
-          <p className="mt-4 text-lg text-white/90 sm:text-xl">{siteContent.brand.subClaim}</p>
-          <p className="mt-5 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
-            Stilvoll wohnen, aktiv geniessen und in den Bergen zur Ruhe kommen. Ferienwohnungen Platzer bietet den idealen Ausgangspunkt fur Ihren Winterurlaub und Sommeraufenthalt.
-          </p>
+      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-5 pb-20 pt-36 sm:px-8 lg:px-12">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.65, ease: [0.2, 0.7, 0.2, 1] }}
+          className="max-w-4xl"
+        >
+          <span className="section-eyebrow">{heroData.eyebrow}</span>
+          <h1 className="headline-xl mt-5 max-w-4xl text-white">{heroData.headline}</h1>
+          <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-100/86 sm:text-lg">{heroData.subline}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="#anfrage"
-              className="rounded-full bg-amber-200 px-6 py-3 text-sm font-semibold text-slate-900 shadow-lg shadow-slate-900/30 transition-all hover:-translate-y-0.5 hover:bg-amber-100"
-            >
-              Jetzt anfragen
+            <Link href={heroData.primaryCta.href} className="primary-btn">
+              {heroData.primaryCta.label}
             </Link>
-            <Link
-              href="#preise"
-              className="rounded-full border border-white/40 bg-white/10 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition-all hover:-translate-y-0.5 hover:bg-white/20"
-            >
-              Preise ansehen
+            <Link href={heroData.secondaryCta.href} className="secondary-btn">
+              {heroData.secondaryCta.label}
             </Link>
           </div>
-        </div>
 
-        <div className="mt-8 flex gap-2">
-          {siteContent.heroImages.map((image, index) => (
+          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+            <article className="glass-panel rounded-2xl px-4 py-3">
+              <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-100/88">
+                <Mountain size={14} /> Winterfokus
+              </p>
+              <p className="mt-1 text-sm text-slate-100/84">Skigebiet und Bergwelt im direkten Fokus</p>
+            </article>
+            <article className="glass-panel rounded-2xl px-4 py-3">
+              <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-100/88">
+                <Building2 size={14} /> Zentrale Lage
+              </p>
+              <p className="mt-1 text-sm text-slate-100/84">Ruhig am Ende einer Privatstrasse gelegen</p>
+            </article>
+            <article className="glass-panel rounded-2xl px-4 py-3">
+              <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-100/88">
+                <Car size={14} /> Direkt parken
+              </p>
+              <p className="mt-1 text-sm text-slate-100/84">Parkplatze befinden sich unmittelbar beim Haus</p>
+            </article>
+          </div>
+        </motion.div>
+
+        <div className="mt-8 flex items-center gap-2">
+          {heroData.images.map((image, index) => (
             <button
               key={image.src}
               type="button"
               onClick={() => setActiveIndex(index)}
-              aria-label={`Slide ${index + 1}`}
-              className={`h-1.5 rounded-full transition-all ${index === activeIndex ? "w-8 bg-amber-200" : "w-4 bg-white/50"}`}
+              aria-label={`Hero Bild ${index + 1}`}
+              className={`h-1.5 rounded-full transition-all ${
+                activeIndex === index ? "w-10 bg-[#d9e4f1]" : "w-4 bg-white/42 hover:bg-white/70"
+              }`}
             />
           ))}
         </div>

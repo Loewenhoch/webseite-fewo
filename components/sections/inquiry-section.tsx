@@ -1,8 +1,7 @@
 ﻿"use client";
 
 import { FormEvent, useMemo, useState } from "react";
-import { CircleAlert, CircleCheck, CalendarDays } from "lucide-react";
-import { motion } from "framer-motion";
+import { CircleAlert, CircleCheck } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
 import { inquiryData } from "@/lib/site-data";
@@ -10,10 +9,6 @@ import { inquiryData } from "@/lib/site-data";
 type InquiryFormState = {
   firstName: string;
   lastName: string;
-  street: string;
-  zipCode: string;
-  city: string;
-  country: string;
   email: string;
   phone: string;
   arrival: string;
@@ -28,10 +23,6 @@ type InquiryFormErrors = Partial<Record<keyof InquiryFormState, string>>;
 const initialForm: InquiryFormState = {
   firstName: "",
   lastName: "",
-  street: "",
-  zipCode: "",
-  city: "",
-  country: "",
   email: "",
   phone: "",
   arrival: "",
@@ -46,10 +37,6 @@ function validateForm(form: InquiryFormState): InquiryFormErrors {
 
   if (!form.firstName.trim()) errors.firstName = "Bitte Vornamen eingeben.";
   if (!form.lastName.trim()) errors.lastName = "Bitte Nachnamen eingeben.";
-  if (!form.street.trim()) errors.street = "Bitte Strasse eingeben.";
-  if (!form.zipCode.trim()) errors.zipCode = "Bitte PLZ eingeben.";
-  if (!form.city.trim()) errors.city = "Bitte Ort eingeben.";
-  if (!form.country.trim()) errors.country = "Bitte Land eingeben.";
 
   if (!form.email.trim()) {
     errors.email = "Bitte E-Mail-Adresse eingeben.";
@@ -57,6 +44,7 @@ function validateForm(form: InquiryFormState): InquiryFormErrors {
     errors.email = "Bitte gueltige E-Mail-Adresse eingeben.";
   }
 
+  if (!form.phone.trim()) errors.phone = "Bitte Telefonnummer eingeben.";
   if (!form.arrival) errors.arrival = "Bitte Anreise waehlen.";
   if (!form.departure) errors.departure = "Bitte Abreise waehlen.";
 
@@ -65,7 +53,7 @@ function validateForm(form: InquiryFormState): InquiryFormErrors {
   }
 
   if (!form.persons || Number(form.persons) <= 0) {
-    errors.persons = "Bitte Anzahl Personen eingeben.";
+    errors.persons = "Bitte gueltige Personenanzahl eingeben.";
   }
 
   if (!form.message.trim()) errors.message = "Bitte Nachricht eingeben.";
@@ -83,7 +71,7 @@ export function InquirySection() {
 
   const minDeparture = useMemo(() => form.arrival || undefined, [form.arrival]);
 
-  const onSubmitWithDetailedError = async (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const nextErrors = validateForm(form);
     setErrors(nextErrors);
@@ -129,31 +117,17 @@ export function InquirySection() {
   return (
     <section id="anfrage" className="py-20 sm:py-24">
       <SectionShell>
-        <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr]">
+        <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
           <MotionReveal>
             <span className="section-eyebrow">Anfrage</span>
             <h2 className="headline-lg mt-4 text-white">{inquiryData.title}</h2>
             <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{inquiryData.text}</p>
-
-            <div className="mt-7 rounded-2xl border border-slate-300/20 bg-slate-900/32 p-5">
-                      <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-[#bccadb]">
-                <CalendarDays size={14} aria-hidden="true" />
-                Verfuegbarkeitskalender
-              </p>
-              <p className="mt-2 text-sm text-muted">
-                Platzhalter fuer spaetere Live-Verfuegbarkeit. Weitere Details folgen.
-              </p>
-            </div>
           </MotionReveal>
 
           <MotionReveal delay={0.08}>
-            <motion.form
-              onSubmit={onSubmitWithDetailedError}
+            <form
+              onSubmit={onSubmit}
               noValidate
-              initial={{ opacity: 0, y: 22 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
               className="rounded-3xl border border-slate-300/23 bg-[linear-gradient(160deg,rgba(15,30,55,0.9),rgba(8,18,35,0.84))] p-6 shadow-[0_30px_55px_-35px_rgba(0,0,0,0.9)]"
             >
               <div className="grid gap-4 sm:grid-cols-2">
@@ -179,48 +153,6 @@ export function InquirySection() {
               </div>
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
-                <label className="text-sm text-slate-100/90 sm:col-span-2">
-                  Strasse
-                  <input
-                    className="form-input mt-1"
-                    value={form.street}
-                    onChange={(event) => setForm((prev) => ({ ...prev, street: event.target.value }))}
-                  />
-                  {errors.street ? <span className="mt-1 block text-xs text-red-300">{errors.street}</span> : null}
-                </label>
-
-                <label className="text-sm text-slate-100/90">
-                  PLZ
-                  <input
-                    className="form-input mt-1"
-                    value={form.zipCode}
-                    onChange={(event) => setForm((prev) => ({ ...prev, zipCode: event.target.value }))}
-                  />
-                  {errors.zipCode ? <span className="mt-1 block text-xs text-red-300">{errors.zipCode}</span> : null}
-                </label>
-
-                <label className="text-sm text-slate-100/90">
-                  Ort
-                  <input
-                    className="form-input mt-1"
-                    value={form.city}
-                    onChange={(event) => setForm((prev) => ({ ...prev, city: event.target.value }))}
-                  />
-                  {errors.city ? <span className="mt-1 block text-xs text-red-300">{errors.city}</span> : null}
-                </label>
-
-                <label className="text-sm text-slate-100/90 sm:col-span-2">
-                  Land
-                  <input
-                    className="form-input mt-1"
-                    value={form.country}
-                    onChange={(event) => setForm((prev) => ({ ...prev, country: event.target.value }))}
-                  />
-                  {errors.country ? <span className="mt-1 block text-xs text-red-300">{errors.country}</span> : null}
-                </label>
-              </div>
-
-              <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <label className="text-sm text-slate-100/90">
                   E-Mail
                   <input
@@ -240,6 +172,7 @@ export function InquirySection() {
                     value={form.phone}
                     onChange={(event) => setForm((prev) => ({ ...prev, phone: event.target.value }))}
                   />
+                  {errors.phone ? <span className="mt-1 block text-xs text-red-300">{errors.phone}</span> : null}
                 </label>
               </div>
 
@@ -322,7 +255,7 @@ export function InquirySection() {
                   {submitErrorMessage || "Bitte Eingaben pruefen oder spaeter erneut versuchen."}
                 </p>
               ) : null}
-            </motion.form>
+            </form>
           </MotionReveal>
         </div>
       </SectionShell>

@@ -48,12 +48,12 @@ export function Footer() {
           <ul className="mt-4 space-y-2 text-sm text-slate-200/88">
             <li>
               <Link href={legalLinks.impressum} className="hover:text-white">
-                Impressum (Platzhalter)
+                Impressum
               </Link>
             </li>
             <li>
               <Link href={legalLinks.datenschutz} className="hover:text-white">
-                Datenschutz (Platzhalter)
+                Datenschutz
               </Link>
             </li>
             <li>

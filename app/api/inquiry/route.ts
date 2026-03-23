@@ -1,4 +1,4 @@
-import nodemailer from "nodemailer";
+﻿import nodemailer from "nodemailer";
 import { NextResponse } from "next/server";
 
 export const runtime = "nodejs";
@@ -9,10 +9,6 @@ const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 type InquiryPayload = {
   firstName: string;
   lastName: string;
-  street: string;
-  zipCode: string;
-  city: string;
-  country: string;
   email: string;
   phone: string;
   arrival: string;
@@ -32,10 +28,6 @@ function readPayload(body: unknown): InquiryPayload {
   return {
     firstName: readString(source.firstName),
     lastName: readString(source.lastName),
-    street: readString(source.street) || readString(source.address),
-    zipCode: readString(source.zipCode) || readString(source.plz),
-    city: readString(source.city) || readString(source.ort),
-    country: readString(source.country) || readString(source.land),
     email: readString(source.email),
     phone: readString(source.phone),
     arrival: readString(source.arrival),
@@ -52,15 +44,14 @@ function validatePayload(payload: InquiryPayload): string[] {
 
   if (!payload.firstName) errors.push("Vorname fehlt.");
   if (!payload.lastName) errors.push("Nachname fehlt.");
-  if (!payload.street) errors.push("Strasse fehlt.");
-  if (!payload.zipCode) errors.push("PLZ fehlt.");
-  if (!payload.city) errors.push("Ort fehlt.");
-  if (!payload.country) errors.push("Land fehlt.");
+
   if (!payload.email) {
     errors.push("E-Mail fehlt.");
   } else if (!EMAIL_REGEX.test(payload.email)) {
     errors.push("E-Mail ist ungueltig.");
   }
+
+  if (!payload.phone) errors.push("Telefon fehlt.");
   if (!payload.arrival) errors.push("Anreise fehlt.");
   if (!payload.departure) errors.push("Abreise fehlt.");
   if (payload.arrival && payload.departure && payload.arrival > payload.departure) {
@@ -85,18 +76,12 @@ function escapeHtml(value: string): string {
 }
 
 function formatPlainText(payload: InquiryPayload): string {
-  const phoneText = payload.phone || "Nicht angegeben";
-
   return [
     "Neue unverbindliche Anfrage ueber die Website",
     "",
     `Name: ${payload.firstName} ${payload.lastName}`,
-    `Strasse: ${payload.street}`,
-    `PLZ: ${payload.zipCode}`,
-    `Ort: ${payload.city}`,
-    `Land: ${payload.country}`,
     `E-Mail: ${payload.email}`,
-    `Telefon: ${phoneText}`,
+    `Telefon: ${payload.phone}`,
     `Anreise: ${payload.arrival}`,
     `Abreise: ${payload.departure}`,
     `Personen: ${payload.persons}`,
@@ -110,18 +95,13 @@ function formatPlainText(payload: InquiryPayload): string {
 
 function formatHtml(payload: InquiryPayload): string {
   const fullName = `${payload.firstName} ${payload.lastName}`.trim();
-  const phoneText = payload.phone || "Nicht angegeben";
 
   return [
     "<h2>Neue unverbindliche Anfrage ueber die Website</h2>",
     "<table cellpadding='6' cellspacing='0' style='border-collapse:collapse;'>",
     `<tr><td><strong>Name</strong></td><td>${escapeHtml(fullName)}</td></tr>`,
-    `<tr><td><strong>Strasse</strong></td><td>${escapeHtml(payload.street)}</td></tr>`,
-    `<tr><td><strong>PLZ</strong></td><td>${escapeHtml(payload.zipCode)}</td></tr>`,
-    `<tr><td><strong>Ort</strong></td><td>${escapeHtml(payload.city)}</td></tr>`,
-    `<tr><td><strong>Land</strong></td><td>${escapeHtml(payload.country)}</td></tr>`,
     `<tr><td><strong>E-Mail</strong></td><td>${escapeHtml(payload.email)}</td></tr>`,
-    `<tr><td><strong>Telefon</strong></td><td>${escapeHtml(phoneText)}</td></tr>`,
+    `<tr><td><strong>Telefon</strong></td><td>${escapeHtml(payload.phone)}</td></tr>`,
     `<tr><td><strong>Anreise</strong></td><td>${escapeHtml(payload.arrival)}</td></tr>`,
     `<tr><td><strong>Abreise</strong></td><td>${escapeHtml(payload.departure)}</td></tr>`,
     `<tr><td><strong>Personen</strong></td><td>${escapeHtml(payload.persons)}</td></tr>`,
@@ -229,4 +209,3 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Versand fehlgeschlagen." }, { status: 500 });
   }
 }
-

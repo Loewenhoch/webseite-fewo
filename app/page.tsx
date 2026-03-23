@@ -1,11 +1,12 @@
 ﻿import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
-import { HeroWinter } from "@/components/sections/hero-winter";
-import { AboutSection } from "@/components/sections/about-section";
+import { Hero } from "@/components/sections/hero";
+import { AccommodationIntro } from "@/components/sections/accommodation-intro";
+import { ApartmentSectionB14 } from "@/components/sections/apartment-section-b14";
+import { ApartmentSectionB4 } from "@/components/sections/apartment-section-b4";
 import { FeaturesSection } from "@/components/sections/features-section";
-import { WinterExperience } from "@/components/sections/winter-experience";
-import { WinterDivider } from "@/components/sections/winter-divider";
-import { SummerExperience } from "@/components/sections/summer-experience";
+import { WinterSection } from "@/components/sections/winter-section";
+import { SummerSection } from "@/components/sections/summer-section";
 import { GallerySection } from "@/components/sections/gallery-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { LocationSection } from "@/components/sections/location-section";
@@ -16,13 +17,18 @@ export default function HomePage() {
     <div className="min-h-screen overflow-hidden bg-transparent text-slate-100">
       <Header />
       <main>
-        <HeroWinter />
-        <AboutSection />
+        <Hero />
+        <AccommodationIntro />
+
+        <div className="section-divider mx-auto w-[90%] max-w-7xl" />
+        <ApartmentSectionB14 />
+        <ApartmentSectionB4 />
+
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <FeaturesSection />
-        <WinterExperience />
-        <WinterDivider />
-        <SummerExperience />
+        <WinterSection />
+        <SummerSection />
+
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <GallerySection />
         <PricingSection />
