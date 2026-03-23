@@ -113,8 +113,8 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     subtitle: "Bauernmobel aus Vollholz, kompakt und wohnlich",
     description:
       "Die Wohnung B14 ist im klassischen Vollholz-Stil eingerichtet und verbindet Wohn-, Ess- und Schlafzonen auf praktikable Weise fur den Urlaub.",
-    occupancy: "Bis zu 6 Personen (je nach Belegung)",
-    beds: "1 Ausziehdoppelbett + 2 Stockbetten",
+    occupancy: "Bis zu 4 Personen (je nach Belegung)",
+    beds: "1 Stockbett (2 Betten)",
     style: "Bauernmobel Vollholz (Voglauer)",
     highlights: [
       "Sitz- und Essbereich mit Trennoption per Rollo",
@@ -137,8 +137,8 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     subtitle: "Landhausstil in heller Eiche mit klarer Aufteilung",
     description:
       "Die Wohnung B4 setzt auf einen helleren Landhausstil und bietet einen offenen Wohnraum mit Schlafmoglichkeiten und integrierter Kuche.",
-    occupancy: "Bis zu 6 Personen (je nach Belegung)",
-    beds: "2 Ausziehdoppelbetten + 1 Stockbett in der Vorraum-Nische",
+    occupancy: "Bis zu 4 Personen (je nach Belegung)",
+    beds: "2 Betten (vorlaufige Angabe)",
     style: "Landhausstil in Eiche hell",
     highlights: [
       "Offener Wohnbereich mit TV",
