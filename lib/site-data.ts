@@ -117,12 +117,12 @@ export const accommodationIntroData = {
       alt: "Hausansicht der Unterkunft im Winter",
     },
     {
-      src: "/assets/images/revision/house/house-slope-side.jpg",
-      alt: "Unterkunft in Hanglage mit Schnee",
+      src: "/assets/images/revision/house/house-front-dog.jpg",
+      alt: "Hausansicht mit Zufahrt und Parkplatz vor dem Gebaeude",
     },
     {
-      src: "/assets/images/revision/house/house-neighborhood-view.jpg",
-      alt: "Blick auf die ruhige Umgebung der Unterkunft",
+      src: "/assets/images/revision/house/house-parking-lane.jpg",
+      alt: "Parkplaetze direkt beim Haus in Obertauern",
     },
   ],
 } as const;
