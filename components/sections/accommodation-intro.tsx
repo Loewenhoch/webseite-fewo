@@ -65,17 +65,6 @@ export function AccommodationIntro() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/58 to-transparent" />
             </article>
-
-            <article className="group relative h-56 overflow-hidden rounded-2xl border border-slate-300/20 sm:col-span-2 sm:h-64">
-              <Image
-                src={accommodationIntroData.images[2].src}
-                alt={accommodationIntroData.images[2].alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/68 to-transparent" />
-            </article>
           </div>
         </MotionReveal>
       </div>
