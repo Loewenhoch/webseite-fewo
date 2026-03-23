@@ -7,7 +7,7 @@ import { SectionShell } from "@/components/ui/section-shell";
 import { galleryData, type GalleryCategoryId } from "@/lib/site-data";
 
 export function GallerySection() {
-  const [activeCategory, setActiveCategory] = useState<GalleryCategoryId>("unterkunft");
+  const [activeCategory, setActiveCategory] = useState<GalleryCategoryId>("b14");
 
   const filteredImages = useMemo(
     () => galleryData.images.filter((image) => image.category === activeCategory),
@@ -20,7 +20,7 @@ export function GallerySection() {
         <span className="section-eyebrow">Galerie</span>
         <h2 className="headline-lg mt-4 text-white">Alle Fotos an einem Ort</h2>
         <p className="mt-3 max-w-3xl text-sm text-muted sm:text-base">
-          Unterkunft, Winter und Sommer sind in einer gemeinsamen Galerie gebundelt.
+          Wohnung B14 und Wohnung B4 sind getrennt dargestellt, plus Haus, Winter und Sommer.
         </p>
       </MotionReveal>
 

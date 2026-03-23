@@ -1,4 +1,4 @@
-export type GalleryCategoryId = "unterkunft" | "winter" | "sommer";
+export type GalleryCategoryId = "b14" | "b4" | "haus" | "winter" | "sommer";
 
 export type GalleryCategory = {
   id: GalleryCategoryId;
@@ -232,7 +232,9 @@ export const galleryData: {
   images: CuratedGalleryImage[];
 } = {
   categories: [
-    { id: "unterkunft", label: "Unterkunft" },
+    { id: "b14", label: "Wohnung B14" },
+    { id: "b4", label: "Wohnung B4" },
+    { id: "haus", label: "Haus & Umgebung" },
     { id: "winter", label: "Winter" },
     { id: "sommer", label: "Sommer" },
   ],
@@ -241,73 +243,73 @@ export const galleryData: {
       src: "/assets/images/revision/apartments/b14/b14-living-dining.jpg",
       alt: "Wohnung B14 Wohn- und Essbereich",
       title: "B14 Wohnbereich",
-      category: "unterkunft",
+      category: "b14",
     },
     {
       src: "/assets/images/revision/apartments/b14/b14-lounge.jpg",
       alt: "Wohnung B14 Sitzbereich",
       title: "B14 Sitzecke",
-      category: "unterkunft",
+      category: "b14",
     },
     {
       src: "/assets/images/revision/apartments/b14/b14-bunk-bed.jpg",
       alt: "Wohnung B14 Stockbett",
       title: "B14 Schlafbereich",
-      category: "unterkunft",
+      category: "b14",
     },
     {
       src: "/assets/images/revision/apartments/b14/b14-bathroom.jpg",
       alt: "Wohnung B14 Badezimmer",
       title: "B14 Badezimmer",
-      category: "unterkunft",
+      category: "b14",
     },
     {
       src: "/assets/images/revision/apartments/b14/b14-kitchen.jpg",
       alt: "Wohnung B14 Kuche",
       title: "B14 Kuche",
-      category: "unterkunft",
+      category: "b14",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-kitchen-living.jpg",
       alt: "Wohnung B4 Kuche und Wohnbereich",
       title: "B4 Wohnkuche",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-kitchen-dining.jpg",
       alt: "Wohnung B4 Essbereich",
       title: "B4 Essbereich",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-lounge.jpg",
       alt: "Wohnung B4 Sitzbereich",
       title: "B4 Sitzecke",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-living-tv.jpg",
       alt: "Wohnung B4 Wohnbereich mit TV",
       title: "B4 Wohnbereich",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-sofa-bed.jpg",
       alt: "Wohnung B4 Schlafsofa",
       title: "B4 Schlafplatz",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-room-overview.jpg",
       alt: "Wohnung B4 Raumubersicht",
       title: "B4 Ubersicht",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-bathroom.jpg",
       alt: "Wohnung B4 Badezimmer",
       title: "B4 Badezimmer",
-      category: "unterkunft",
+      category: "b4",
     },
     {
       src: "/assets/images/revision/winter/winter-ski-carving.jpg",
@@ -355,19 +357,19 @@ export const galleryData: {
       src: "/assets/images/revision/house/house-front-winter.jpg",
       alt: "Hausansicht im Winter",
       title: "Hausansicht",
-      category: "unterkunft",
+      category: "haus",
     },
     {
       src: "/assets/images/revision/house/house-slope-side.jpg",
       alt: "Unterkunft mit Schneeflache vor dem Haus",
       title: "Direkte Umgebung",
-      category: "unterkunft",
+      category: "haus",
     },
     {
       src: "/assets/images/revision/house/house-neighborhood-view.jpg",
       alt: "Ruhige Umgebung der Unterkunft",
       title: "Nachbarschaft",
-      category: "unterkunft",
+      category: "haus",
     },
   ],
 };
