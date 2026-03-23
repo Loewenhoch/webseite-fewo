@@ -43,24 +43,13 @@ export function AccommodationIntro() {
         </MotionReveal>
 
         <MotionReveal delay={0.08}>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <article className="group relative h-64 overflow-hidden rounded-2xl border border-slate-300/20 sm:h-56">
-              <Image
-                src={accommodationIntroData.images[0].src}
-                alt={accommodationIntroData.images[0].alt}
-                fill
-                sizes="(max-width: 1024px) 100vw, 32vw"
-                className="object-cover transition duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/62 to-transparent" />
-            </article>
-
-            <article className="group relative h-64 overflow-hidden rounded-2xl border border-slate-300/20 sm:h-56">
+          <div className="grid">
+            <article className="group relative h-80 overflow-hidden rounded-2xl border border-slate-300/20 sm:h-[32rem]">
               <Image
                 src={accommodationIntroData.images[1].src}
                 alt={accommodationIntroData.images[1].alt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 32vw"
+                sizes="(max-width: 1024px) 100vw, 44vw"
                 className="object-cover transition duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/58 to-transparent" />
