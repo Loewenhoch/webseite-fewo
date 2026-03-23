@@ -114,7 +114,7 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     description:
       "Die Wohnung B14 ist im klassischen Vollholz-Stil eingerichtet und verbindet Wohn-, Ess- und Schlafzonen auf praktikable Weise fur den Urlaub.",
     occupancy: "Bis zu 4 Personen (je nach Belegung)",
-    beds: "1 Stockbett (2 Betten)",
+    beds: "4 Betten",
     style: "Bauernmobel Vollholz (Voglauer)",
     highlights: [
       "Sitz- und Essbereich mit Trennoption per Rollo",
@@ -138,7 +138,7 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     description:
       "Die Wohnung B4 setzt auf einen helleren Landhausstil und bietet einen offenen Wohnraum mit Schlafmoglichkeiten und integrierter Kuche.",
     occupancy: "Bis zu 4 Personen (je nach Belegung)",
-    beds: "2 Betten (vorlaufige Angabe)",
+    beds: "4 Betten",
     style: "Landhausstil in Eiche hell",
     highlights: [
       "Offener Wohnbereich mit TV",
@@ -376,15 +376,12 @@ export const galleryData: {
 
 export const pricingData = {
   title: "Preise",
-  note: "Die detaillierte Preisstaffelung finden Sie in der aktuellen PDF-Preisliste.",
-  pdfLabel: "Preisliste als PDF offnen",
-  // Preise und Saisoninfos lassen sich hier zentral anpassen.
-  pdfHref: "/assets/docs/preise-2025-2026.pdf",
+  note: "Aktuell ist keine separate PDF-Preisliste auf der Website verlinkt.",
   rows: [
-    { label: "Wintersaison", value: "laut Preisliste / auf Anfrage je Zeitraum" },
-    { label: "Sommersaison", value: "laut Preisliste / auf Anfrage je Zeitraum" },
-    { label: "Endreinigung", value: "laut Preisliste" },
-    { label: "Kurtaxe", value: "laut aktueller Gemeindevorgabe" },
+    { label: "Wohnung B14", value: "201,67 EUR pro Nacht" },
+    { label: "Wohnung B4", value: "201,67 EUR pro Nacht" },
+    { label: "Betten Wohnung B14", value: "4 Betten" },
+    { label: "Betten Wohnung B4", value: "4 Betten" },
   ],
 } as const;
 

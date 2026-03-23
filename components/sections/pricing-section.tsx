@@ -1,5 +1,3 @@
-﻿import Link from "next/link";
-import { FileText } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
 import { pricingData } from "@/lib/site-data";
@@ -27,10 +25,6 @@ export function PricingSection() {
         <MotionReveal delay={0.1}>
           <div className="mt-7 rounded-2xl border border-[#c2d3e5]/35 bg-[#c2d3e5]/8 p-5 text-sm text-[#e8f0f9]">
             <p>{pricingData.note}</p>
-            <Link href={pricingData.pdfHref} target="_blank" className="secondary-btn mt-4 inline-flex items-center gap-2">
-              <FileText size={15} aria-hidden="true" />
-              {pricingData.pdfLabel}
-            </Link>
           </div>
         </MotionReveal>
       </SectionShell>
