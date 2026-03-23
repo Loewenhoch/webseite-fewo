@@ -100,8 +100,8 @@ export const accommodationIntroData = {
       alt: "Hausansicht mit Zufahrt und Parkplatz vor dem Gebaeude",
     },
     {
-      src: "/assets/images/revision/house/house-parking-lane.jpg",
-      alt: "Parkplaetze direkt beim Haus in Obertauern",
+      src: "/assets/images/revision/house/house-slope-side.jpg",
+      alt: "Blick auf die direkte Umgebung der Unterkunft",
     },
   ],
 } as const;
