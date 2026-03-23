@@ -1,12 +1,9 @@
-﻿import { Header } from "@/components/layout/header";
+import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Hero } from "@/components/sections/hero";
 import { AccommodationIntro } from "@/components/sections/accommodation-intro";
-import { ApartmentSectionB14 } from "@/components/sections/apartment-section-b14";
-import { ApartmentSectionB4 } from "@/components/sections/apartment-section-b4";
 import { FeaturesSection } from "@/components/sections/features-section";
-import { WinterSection } from "@/components/sections/winter-section";
-import { SummerSection } from "@/components/sections/summer-section";
+import { SeasonsOverview } from "@/components/sections/seasons-overview";
 import { GallerySection } from "@/components/sections/gallery-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { LocationSection } from "@/components/sections/location-section";
@@ -21,13 +18,8 @@ export default function HomePage() {
         <AccommodationIntro />
 
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
-        <ApartmentSectionB14 />
-        <ApartmentSectionB4 />
-
-        <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <FeaturesSection />
-        <WinterSection />
-        <SummerSection />
+        <SeasonsOverview />
 
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <GallerySection />
