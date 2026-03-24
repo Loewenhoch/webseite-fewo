@@ -34,6 +34,10 @@ body {
     linear-gradient(180deg, var(--night-900) 0%, var(--night-950) 35%, #090f1e 100%);
 }
 
+img {
+  cursor: zoom-in;
+}
+
 .font-display {
   font-family: var(--font-cormorant), serif;
 }

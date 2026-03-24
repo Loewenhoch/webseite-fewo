@@ -1,6 +1,7 @@
 ﻿import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Sora } from "next/font/google";
 import "./globals.css";
+import { GlobalImageLightbox } from "@/components/ui/global-image-lightbox";
 import { seoData, brandData } from "@/lib/site-data";
 
 const sora = Sora({
@@ -44,7 +45,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body className={`${sora.variable} ${cormorant.variable} antialiased`}>{children}</body>
+      <body className={`${sora.variable} ${cormorant.variable} antialiased`}>
+        {children}
+        <GlobalImageLightbox />
+      </body>
     </html>
   );
 }
