@@ -1,8 +1,7 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Route, ExternalLink } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
-import { LocationDirections } from "@/components/ui/location-directions";
 import { SectionShell } from "@/components/ui/section-shell";
 import { contactData, locationData, pistePlanData } from "@/lib/site-data";
 
@@ -26,10 +25,7 @@ export function LocationSection() {
               <Route size={15} aria-hidden="true" />
               {locationData.mapCtaLabel}
             </Link>
-            <LocationDirections
-              destinationQuery={locationData.googleMapsDestinationQuery}
-              fallbackMapsUrl={locationData.googleMapsUrl}
-            />
+
           </div>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-slate-300/20">
