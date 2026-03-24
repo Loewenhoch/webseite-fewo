@@ -11,13 +11,13 @@ export function Footer() {
           <p className="mt-2 text-sm text-slate-300/80">{contactData.city}</p>
 
           <div className="mt-5 space-y-2 text-sm text-slate-200/90">
-            <p className="inline-flex items-center gap-2">
+            <p className="flex items-center gap-2">
               <Phone size={15} aria-hidden="true" />
               <a href={`tel:${contactData.phone}`} className="hover:text-white">
                 {contactData.phone}
               </a>
             </p>
-            <p className="inline-flex items-center gap-2">
+            <p className="flex items-center gap-2">
               <Mail size={15} aria-hidden="true" />
               <a href={`mailto:${contactData.email}`} className="hover:text-white">
                 {contactData.email}
