@@ -25,7 +25,7 @@ export function Footer() {
             </p>
             <p className="inline-flex items-center gap-2 text-slate-300/75">
               <MapPin size={15} aria-hidden="true" />
-              Obertauern
+              {contactData.city}
             </p>
           </div>
         </div>

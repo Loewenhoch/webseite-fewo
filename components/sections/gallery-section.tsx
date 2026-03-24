@@ -20,7 +20,7 @@ export function GallerySection() {
         <span className="section-eyebrow">Galerie</span>
         <h2 className="headline-lg mt-4 text-white">Alle Fotos an einem Ort</h2>
         <p className="mt-3 max-w-3xl text-sm text-muted sm:text-base">
-          Wohnung B14 und Wohnung B4 sind getrennt dargestellt, plus Haus, Winter und Sommer.
+          Wohnung B14 und Wohnung B4 sind getrennt dargestellt, plus Winter und Sommer.
         </p>
       </MotionReveal>
 

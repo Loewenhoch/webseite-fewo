@@ -1,7 +1,8 @@
 ﻿import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Route, QrCode, ExternalLink } from "lucide-react";
+import { MapPin, Route, ExternalLink } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
+import { LocationDirections } from "@/components/ui/location-directions";
 import { SectionShell } from "@/components/ui/section-shell";
 import { contactData, locationData, pistePlanData } from "@/lib/site-data";
 
@@ -20,10 +21,15 @@ export function LocationSection() {
               {contactData.city}
             </p>
             <p className="mt-2 text-sm text-muted">{locationData.addressLine}</p>
+            <p className="mt-1 text-xs text-muted">Koordinaten: {locationData.coordinates}</p>
             <Link href={locationData.googleMapsUrl} target="_blank" className="secondary-btn mt-4 inline-flex items-center gap-2">
               <Route size={15} aria-hidden="true" />
               {locationData.mapCtaLabel}
             </Link>
+            <LocationDirections
+              destinationQuery={locationData.googleMapsDestinationQuery}
+              fallbackMapsUrl={locationData.googleMapsUrl}
+            />
           </div>
 
           <div className="mt-6 overflow-hidden rounded-2xl border border-slate-300/20">
@@ -45,9 +51,8 @@ export function LocationSection() {
 
             <div className="mt-6 overflow-hidden rounded-2xl border border-slate-300/18 bg-white/90 p-2">
               <Image
-                // QR-Code-Bild fur den interaktiven Pistenplan
-                src={pistePlanData.qrImage}
-                alt="QR-Code fur interaktiven Pistenplan"
+                src={pistePlanData.image}
+                alt="Pistenplan Obertauern"
                 width={900}
                 height={500}
                 className="h-auto w-full rounded-xl object-contain"
@@ -55,12 +60,11 @@ export function LocationSection() {
             </div>
 
             <Link
-              // Interaktiver Pistenplan-Link (aus dem QR-Code ausgelesen)
               href={pistePlanData.interactiveSlopeMapUrl}
               target="_blank"
               className="primary-btn mt-6 inline-flex items-center gap-2"
             >
-              <QrCode size={15} aria-hidden="true" />
+              <Route size={15} aria-hidden="true" />
               {pistePlanData.ctaLabel}
               <ExternalLink size={14} aria-hidden="true" />
             </Link>

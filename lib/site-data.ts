@@ -1,4 +1,4 @@
-export type GalleryCategoryId = "b14" | "b4" | "haus" | "winter" | "sommer";
+export type GalleryCategoryId = "b14" | "b4" | "winter" | "sommer";
 
 export type GalleryCategory = {
   id: GalleryCategoryId;
@@ -114,7 +114,7 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     description:
       "Die Wohnung B14 ist im klassischen Vollholz-Stil eingerichtet und verbindet Wohn-, Ess- und Schlafzonen auf praktikable Weise fur den Urlaub.",
     occupancy: "Bis zu 4 Personen (je nach Belegung)",
-    beds: "4 Betten",
+    beds: "6 Betten",
     style: "Bauernmobel Vollholz (Voglauer)",
     highlights: [
       "Sitz- und Essbereich mit Trennoption per Rollo",
@@ -138,7 +138,7 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     description:
       "Die Wohnung B4 setzt auf einen helleren Landhausstil und bietet einen offenen Wohnraum mit Schlafmoglichkeiten und integrierter Kuche.",
     occupancy: "Bis zu 4 Personen (je nach Belegung)",
-    beds: "4 Betten",
+    beds: "6 Betten",
     style: "Landhausstil in Eiche hell",
     highlights: [
       "Offener Wohnbereich mit TV",
@@ -170,7 +170,7 @@ export const featuresData = {
     "Geschirr, Glaser, Kochutensilien sowie Geschirrspultabs und Spulmittel vorhanden",
     "TV mit Kabelanschluss und WLAN",
     "Badezimmer mit Badewanne, Duschvorhang, Waschbecken und Haarfon",
-    "Sudbalkon",
+    "Balkon",
     "Hunde auf Anfrage erlaubt",
     "Parkplatze direkt beim Haus",
   ],
@@ -234,7 +234,6 @@ export const galleryData: {
   categories: [
     { id: "b14", label: "Wohnung B14" },
     { id: "b4", label: "Wohnung B4" },
-    { id: "haus", label: "Haus & Umgebung" },
     { id: "winter", label: "Winter" },
     { id: "sommer", label: "Sommer" },
   ],
@@ -353,43 +352,23 @@ export const galleryData: {
       title: "Natur & Ruhe",
       category: "sommer",
     },
-    {
-      src: "/assets/images/revision/house/house-front-winter.jpg",
-      alt: "Hausansicht im Winter",
-      title: "Hausansicht",
-      category: "haus",
-    },
-    {
-      src: "/assets/images/revision/house/house-slope-side.jpg",
-      alt: "Unterkunft mit Schneeflache vor dem Haus",
-      title: "Direkte Umgebung",
-      category: "haus",
-    },
-    {
-      src: "/assets/images/revision/house/house-neighborhood-view.jpg",
-      alt: "Ruhige Umgebung der Unterkunft",
-      title: "Nachbarschaft",
-      category: "haus",
-    },
   ],
 };
 
 export const pricingData = {
   title: "Preise",
-  note: "Aktuell ist keine separate PDF-Preisliste auf der Website verlinkt.",
   rows: [
     { label: "Wohnung B14", value: "201,67 EUR pro Nacht" },
     { label: "Wohnung B4", value: "201,67 EUR pro Nacht" },
-    { label: "Betten Wohnung B14", value: "4 Betten" },
-    { label: "Betten Wohnung B4", value: "4 Betten" },
+    { label: "Betten Wohnung B14", value: "6 Betten" },
+    { label: "Betten Wohnung B4", value: "6 Betten" },
   ],
 } as const;
 
 export const pistePlanData = {
   title: "Interaktiver Pistenplan",
-  text: "Scannen Sie den QR-Code oder offnen Sie den Pistenplan direkt im Browser.",
-  qrImage: "/assets/images/revision/documents/interactive-slope-map-qr.png",
-  // QR-Code automatisch ausgelesen. Falls sich der Link andert, bitte hier aktualisieren.
+  text: "Hier sehen Sie den Pistenplan als Ubersicht. Den interaktiven Plan offnen Sie direkt uber den Link darunter.",
+  image: "/assets/images/revision/documents/pistenplan-overview.jpg",
   interactiveSlopeMapUrl: "https://winter.intermaps.com/obertauern?zoomCalculationMode=fitWidth",
   ctaLabel: "Interaktiven Pistenplan offnen",
 } as const;
@@ -398,10 +377,12 @@ export const locationData = {
   title: "Lage",
   text:
     "Die Unterkunft liegt im Zentrum von Obertauern, am Ende einer Privatstrasse. Dadurch bleibt es ruhig, wahrend Restaurants, Infrastruktur und Skigebiet gut erreichbar sind.",
-  addressLine: "Obertauern - 5562 Obertauern",
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Ferienwohnungen+Platzer+Obertauern",
+  addressLine: "Obertauern 156, 5562 Tweng",
+  coordinates: "47.248932, 13.561535",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=47.248932,13.561535",
+  googleMapsDestinationQuery: "Obertauern 156, 5562 Tweng, Osterreich",
   mapCtaLabel: "In Google Maps offnen",
-  staticMapImage: "/assets/images/revision/documents/location-map-marked.jpg",
+  staticMapImage: "/assets/images/revision/documents/location-map-current.png",
 } as const;
 
 export const inquiryData = {
@@ -413,7 +394,7 @@ export const inquiryData = {
 
 export const contactData = {
   name: "Ferienwohnungen Platzer",
-  city: "Obertauern - 5562 Obertauern",
+  city: "Obertauern 156, 5562 Tweng",
   phone: "+43(0)664 41 66 339",
   email: "fewo@platzer.co.at",
 } as const;

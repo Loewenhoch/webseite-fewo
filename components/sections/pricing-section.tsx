@@ -21,12 +21,6 @@ export function PricingSection() {
             </MotionReveal>
           ))}
         </div>
-
-        <MotionReveal delay={0.1}>
-          <div className="mt-7 rounded-2xl border border-[#c2d3e5]/35 bg-[#c2d3e5]/8 p-5 text-sm text-[#e8f0f9]">
-            <p>{pricingData.note}</p>
-          </div>
-        </MotionReveal>
       </SectionShell>
     </section>
   );
