@@ -72,8 +72,8 @@ export const heroData = {
       alt: "Abendstimmung uber Obertauern im Winter",
     },
     {
-      src: "/assets/images/revision/winter/winter-horse-sleigh.jpg",
-      alt: "Pferdeschlittenfahrt in verschneiter Winterlandschaft",
+      src: "/assets/images/winter/custom/hero-ski-duo-panorama.jpg",
+      alt: "Zwei Skifahrer mit Panoramablick uber Obertauern",
     },
   ],
 } as const;
