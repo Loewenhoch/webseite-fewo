@@ -11,6 +11,10 @@ type InquiryPayload = {
   lastName: string;
   email: string;
   phone: string;
+  streetAddress: string;
+  postalCode: string;
+  city: string;
+  country: string;
   arrival: string;
   departure: string;
   persons: string;
@@ -30,6 +34,10 @@ function readPayload(body: unknown): InquiryPayload {
     lastName: readString(source.lastName),
     email: readString(source.email),
     phone: readString(source.phone),
+    streetAddress: readString(source.streetAddress),
+    postalCode: readString(source.postalCode),
+    city: readString(source.city),
+    country: readString(source.country),
     arrival: readString(source.arrival),
     departure: readString(source.departure),
     persons: readString(source.persons),
@@ -52,6 +60,10 @@ function validatePayload(payload: InquiryPayload): string[] {
   }
 
   if (!payload.phone) errors.push("Telefon fehlt.");
+  if (!payload.streetAddress) errors.push("Adresse fehlt.");
+  if (!payload.postalCode) errors.push("PLZ fehlt.");
+  if (!payload.city) errors.push("Ort fehlt.");
+  if (!payload.country) errors.push("Land fehlt.");
   if (!payload.arrival) errors.push("Anreise fehlt.");
   if (!payload.departure) errors.push("Abreise fehlt.");
   if (payload.arrival && payload.departure && payload.arrival > payload.departure) {
@@ -82,6 +94,10 @@ function formatPlainText(payload: InquiryPayload): string {
     `Name: ${payload.firstName} ${payload.lastName}`,
     `E-Mail: ${payload.email}`,
     `Telefon: ${payload.phone}`,
+    `Adresse: ${payload.streetAddress}`,
+    `PLZ: ${payload.postalCode}`,
+    `Ort: ${payload.city}`,
+    `Land: ${payload.country}`,
     `Anreise: ${payload.arrival}`,
     `Abreise: ${payload.departure}`,
     `Personen: ${payload.persons}`,
@@ -102,6 +118,10 @@ function formatHtml(payload: InquiryPayload): string {
     `<tr><td><strong>Name</strong></td><td>${escapeHtml(fullName)}</td></tr>`,
     `<tr><td><strong>E-Mail</strong></td><td>${escapeHtml(payload.email)}</td></tr>`,
     `<tr><td><strong>Telefon</strong></td><td>${escapeHtml(payload.phone)}</td></tr>`,
+    `<tr><td><strong>Adresse</strong></td><td>${escapeHtml(payload.streetAddress)}</td></tr>`,
+    `<tr><td><strong>PLZ</strong></td><td>${escapeHtml(payload.postalCode)}</td></tr>`,
+    `<tr><td><strong>Ort</strong></td><td>${escapeHtml(payload.city)}</td></tr>`,
+    `<tr><td><strong>Land</strong></td><td>${escapeHtml(payload.country)}</td></tr>`,
     `<tr><td><strong>Anreise</strong></td><td>${escapeHtml(payload.arrival)}</td></tr>`,
     `<tr><td><strong>Abreise</strong></td><td>${escapeHtml(payload.departure)}</td></tr>`,
     `<tr><td><strong>Personen</strong></td><td>${escapeHtml(payload.persons)}</td></tr>`,

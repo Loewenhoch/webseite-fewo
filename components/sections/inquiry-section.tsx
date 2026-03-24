@@ -11,6 +11,10 @@ type InquiryFormState = {
   lastName: string;
   email: string;
   phone: string;
+  streetAddress: string;
+  postalCode: string;
+  city: string;
+  country: string;
   arrival: string;
   departure: string;
   persons: string;
@@ -25,6 +29,10 @@ const initialForm: InquiryFormState = {
   lastName: "",
   email: "",
   phone: "",
+  streetAddress: "",
+  postalCode: "",
+  city: "",
+  country: "",
   arrival: "",
   departure: "",
   persons: "",
@@ -45,6 +53,10 @@ function validateForm(form: InquiryFormState): InquiryFormErrors {
   }
 
   if (!form.phone.trim()) errors.phone = "Bitte Telefonnummer eingeben.";
+  if (!form.streetAddress.trim()) errors.streetAddress = "Bitte Adresse eingeben.";
+  if (!form.postalCode.trim()) errors.postalCode = "Bitte PLZ eingeben.";
+  if (!form.city.trim()) errors.city = "Bitte Ort eingeben.";
+  if (!form.country.trim()) errors.country = "Bitte Land eingeben.";
   if (!form.arrival) errors.arrival = "Bitte Anreise waehlen.";
   if (!form.departure) errors.departure = "Bitte Abreise waehlen.";
 
@@ -173,6 +185,50 @@ export function InquirySection() {
                     onChange={(event) => setForm((prev) => ({ ...prev, phone: event.target.value }))}
                   />
                   {errors.phone ? <span className="mt-1 block text-xs text-red-300">{errors.phone}</span> : null}
+                </label>
+              </div>
+
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <label className="text-sm text-slate-100/90">
+                  Adresse
+                  <input
+                    className="form-input mt-1"
+                    value={form.streetAddress}
+                    onChange={(event) => setForm((prev) => ({ ...prev, streetAddress: event.target.value }))}
+                  />
+                  {errors.streetAddress ? <span className="mt-1 block text-xs text-red-300">{errors.streetAddress}</span> : null}
+                </label>
+
+                <label className="text-sm text-slate-100/90">
+                  Ort
+                  <input
+                    className="form-input mt-1"
+                    value={form.city}
+                    onChange={(event) => setForm((prev) => ({ ...prev, city: event.target.value }))}
+                  />
+                  {errors.city ? <span className="mt-1 block text-xs text-red-300">{errors.city}</span> : null}
+                </label>
+              </div>
+
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <label className="text-sm text-slate-100/90">
+                  PLZ
+                  <input
+                    className="form-input mt-1"
+                    value={form.postalCode}
+                    onChange={(event) => setForm((prev) => ({ ...prev, postalCode: event.target.value }))}
+                  />
+                  {errors.postalCode ? <span className="mt-1 block text-xs text-red-300">{errors.postalCode}</span> : null}
+                </label>
+
+                <label className="text-sm text-slate-100/90">
+                  Land
+                  <input
+                    className="form-input mt-1"
+                    value={form.country}
+                    onChange={(event) => setForm((prev) => ({ ...prev, country: event.target.value }))}
+                  />
+                  {errors.country ? <span className="mt-1 block text-xs text-red-300">{errors.country}</span> : null}
                 </label>
               </div>
 
