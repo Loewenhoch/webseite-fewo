@@ -1,69 +1,150 @@
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Route, ExternalLink } from "lucide-react";
+import { MapPin, Navigation, Mountain, Car } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
-import { contactData, locationData, pistePlanData } from "@/lib/site-data";
+import { LocationDirections } from "@/components/ui/location-directions";
+import { locationData } from "@/lib/site-data";
+
+const KEY_FACTS = [
+  {
+    icon: MapPin,
+    label: "Adresse",
+    value: "Zirbenstraße 3, 5562 Obertauern",
+  },
+  {
+    icon: Mountain,
+    label: "Lage",
+    value: "Zentrum Obertauern · Ende einer Privatstraße",
+  },
+  {
+    icon: Car,
+    label: "Parkplatz",
+    value: "Direkt beim Haus, kostenlos",
+  },
+];
 
 export function LocationSection() {
   return (
-    <SectionShell id="lage" className="py-20 sm:py-24">
-      <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-        <MotionReveal>
-          <span className="section-eyebrow">Lage</span>
-          <h2 className="headline-lg mt-4 text-white">{locationData.title}</h2>
-          <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{locationData.text}</p>
+    <SectionShell id="lage" className="py-20 sm:py-28">
 
-          <div className="mt-6 rounded-2xl border border-slate-300/20 bg-slate-900/35 p-5">
-            <p className="inline-flex items-center gap-2 text-sm font-semibold text-strong">
-              <MapPin size={15} aria-hidden="true" />
-              {contactData.city}
-            </p>
-            <p className="mt-2 text-sm text-muted">{locationData.addressLine}</p>
-            <p className="mt-1 text-xs text-muted">Koordinaten: {locationData.coordinates}</p>
-            <Link href={locationData.googleMapsUrl} target="_blank" className="secondary-btn mt-4 inline-flex items-center gap-2">
-              <Route size={15} aria-hidden="true" />
-              {locationData.mapCtaLabel}
-            </Link>
+      {/* Header */}
+      <MotionReveal>
+        <span className="section-eyebrow">Lage & Anreise</span>
+        <h2 className="headline-lg mt-4 text-white">{locationData.title}</h2>
+        <p className="mt-4 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">
+          {locationData.text}
+        </p>
+      </MotionReveal>
 
-          </div>
+      {/* Key facts strip */}
+      <MotionReveal delay={0.06}>
+        <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
+          {KEY_FACTS.map(({ icon: Icon, label, value }) => (
+            <div
+              key={label}
+              className="flex flex-col gap-2 rounded-2xl border border-slate-300/15 bg-slate-900/35 p-4 sm:p-5"
+            >
+              <div className="flex items-center gap-2">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-[#cfe0f2]/20 bg-[#cfe0f2]/10 text-[#c8dff2]">
+                  <Icon size={14} />
+                </span>
+                <span className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
+                  {label}
+                </span>
+              </div>
+              <p className="text-sm font-semibold leading-snug text-slate-100/90">{value}</p>
+            </div>
+          ))}
+        </div>
+      </MotionReveal>
 
-          <div className="mt-6 overflow-hidden rounded-2xl border border-slate-300/20">
-            <Image
-              src={locationData.staticMapImage}
-              alt="Lageplan in Obertauern"
-              width={1400}
-              height={900}
-              className="h-auto w-full object-cover"
-            />
+      {/* Main content grid */}
+      <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.88fr] lg:gap-8">
+
+        {/* Left: Lageplan + Navigation */}
+        <MotionReveal delay={0.08}>
+          <div className="flex flex-col gap-5">
+
+            {/* Static map — clickable lightbox */}
+            <div className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-slate-300/20">
+              <Image
+                src={locationData.staticMapImage}
+                alt="Lageplan Zirbenstraße 3, Obertauern"
+                width={1400}
+                height={900}
+                data-lightbox="true"
+                className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+              />
+              <div className="pointer-events-none absolute bottom-3 left-3">
+                <span className="rounded-full border border-white/22 bg-black/58 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-white backdrop-blur-sm">
+                  Zirbenstraße 3 · Obertauern
+                </span>
+              </div>
+            </div>
+
+            {/* Navigation card */}
+            <div className="rounded-2xl border border-slate-300/15 bg-slate-900/40 p-5">
+              <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
+                Navigation & Anfahrt
+              </p>
+              <Link
+                href={locationData.googleMapsUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="primary-btn inline-flex items-center gap-2"
+              >
+                <Navigation size={14} aria-hidden="true" />
+                {locationData.mapCtaLabel}
+              </Link>
+              <LocationDirections
+                destinationQuery={locationData.googleMapsDestinationQuery}
+                fallbackMapsUrl={locationData.googleMapsUrl}
+              />
+            </div>
           </div>
         </MotionReveal>
 
-        <MotionReveal delay={0.08}>
-          <div className="lux-card rounded-3xl p-6 sm:p-7">
-            <p className="section-eyebrow">Pistenplan</p>
-            <h3 className="mt-4 text-2xl font-semibold text-strong">{pistePlanData.title}</h3>
-            <p className="mt-3 text-sm leading-relaxed text-muted sm:text-base">{pistePlanData.text}</p>
+        {/* Right: Panorama + Info card */}
+        <MotionReveal delay={0.13}>
+          <div className="flex flex-col gap-5">
 
-            <div className="mt-6 overflow-hidden rounded-2xl border border-slate-300/18 bg-white/90 p-2">
+            {/* Wide panorama — gives geographic context */}
+            <div className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-slate-300/20">
               <Image
-                src={pistePlanData.image}
-                alt="Pistenplan Obertauern"
-                width={900}
-                height={500}
-                className="h-auto w-full rounded-xl object-contain"
+                src="/assets/images/revision/winter/winter-evening-panorama.jpg"
+                alt="Obertauern – Blick auf den Ort im Winter"
+                width={1200}
+                height={800}
+                data-lightbox="true"
+                className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-72"
               />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
+              <div className="pointer-events-none absolute bottom-4 left-4">
+                <p className="text-sm font-bold uppercase tracking-[0.18em] text-white/95">Obertauern</p>
+                <p className="mt-0.5 text-[0.7rem] text-white/65">
+                  Salzburg, Österreich · ca. 1740 m ü. M.
+                </p>
+              </div>
             </div>
 
-            <Link
-              href={pistePlanData.interactiveSlopeMapUrl}
-              target="_blank"
-              className="primary-btn mt-6 inline-flex items-center gap-2"
-            >
-              <Route size={15} aria-hidden="true" />
-              {pistePlanData.ctaLabel}
-              <ExternalLink size={14} aria-hidden="true" />
-            </Link>
+            {/* Info card */}
+            <div className="rounded-2xl border border-slate-300/15 bg-gradient-to-br from-[rgba(13,27,49,0.90)] to-[rgba(8,17,33,0.72)] p-5 sm:p-6">
+              <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
+                So finden Sie uns
+              </p>
+              <p className="text-sm leading-relaxed text-slate-100/80">
+                Obertauern liegt auf der Tauernpass-Straße (B99) zwischen Radstadt und Mauterndorf.
+                Die Zirbenstraße zweigt im Ortszentrum ab — das Haus liegt am Ende dieser Straße.
+                Navigationsgeräte führen Sie zuverlässig direkt zum Haus.
+              </p>
+              <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-[#cfe0f2]/20 bg-slate-900/50 px-4 py-3">
+                <MapPin size={14} className="shrink-0 text-[#c8dff2]" aria-hidden="true" />
+                <span className="text-sm font-semibold text-slate-100/90">
+                  Zirbenstraße 3, 5562 Obertauern
+                </span>
+              </div>
+            </div>
           </div>
         </MotionReveal>
       </div>

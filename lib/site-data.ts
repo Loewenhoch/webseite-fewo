@@ -411,14 +411,14 @@ export const pistePlanData = {
 } as const;
 
 export const locationData = {
-  title: "Lage",
+  title: "Lage & Anreise",
   text:
-    "Die Unterkunft liegt im Zentrum von Obertauern, am Ende einer Privatstrasse. Dadurch bleibt es ruhig, wahrend Restaurants, Infrastruktur und Skigebiet gut erreichbar sind.",
-  addressLine: "Obertauern 156, 5562 Tweng",
+    "Die Unterkunft befindet sich in der Zirbenstraße 3 im Zentrum von Obertauern, am ruhigen Ende einer Privatstraße. Restaurants, Infrastruktur und Skigebiet sind gut erreichbar – der Parkplatz direkt beim Haus macht die Anreise unkompliziert.",
+  addressLine: "Zirbenstraße 3, 5562 Obertauern",
   coordinates: "47.248932, 13.561535",
   googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=47.248932,13.561535",
-  googleMapsDestinationQuery: "Obertauern 156, 5562 Tweng, Osterreich",
-  mapCtaLabel: "In Google Maps offnen",
+  googleMapsDestinationQuery: "Zirbenstraße 3, 5562 Obertauern, Österreich",
+  mapCtaLabel: "In Google Maps öffnen",
   staticMapImage: "/assets/images/revision/documents/location-map-current.png",
 } as const;
 
@@ -431,7 +431,7 @@ export const inquiryData = {
 
 export const contactData = {
   name: "Ferienwohnungen Platzer",
-  city: "Obertauern 156, 5562 Tweng",
+  city: "Zirbenstraße 3, 5562 Obertauern",
   phone: "+43(0)664 41 66 339",
   email: "fewo@platzer.co.at",
 } as const;
