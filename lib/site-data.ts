@@ -59,7 +59,7 @@ export const heroData = {
   eyebrow: "Ferienwohnungen Platzer",
   headline: "Winterurlaub in Obertauern. Ruhig wohnen. Schnell auf der Piste.",
   subline:
-    "Zwei Ferienwohnungen in zentraler Lage am Ende einer Privatstrasse. Parkplatz direkt beim Haus, klare Ausstattung und kurze Wege in den Skiurlaub.",
+    "Ferienwohnungen in zentraler Lage am Ende einer Privatstrasse. Parkplatz direkt beim Haus, vollständige Ausstattung und kurze Wege im Skiurlaub.",
   primaryCta: { label: "Jetzt anfragen", href: "#anfrage" },
   secondaryCta: { label: "Preise ansehen", href: "#preise" },
   images: [
