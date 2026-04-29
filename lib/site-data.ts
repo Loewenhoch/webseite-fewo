@@ -162,19 +162,56 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
 export const featuresData = {
   title: "Ausstattung",
   subtitle: "Nur echte und verlassliche Angaben fur den Aufenthalt.",
-  items: [
-    "Einrichtung im Landhausstil / Bauernmobel / Vollholz (je nach Wohnung)",
-    "Bettwasche, Hand- und Badetucher, Geschirrtucher, Zusatzdecken",
-    "Kuche mit Grundausstattung (Toaster, Wasserkocher, Kaffeemoglichkeit)",
-    "Kuhlschrank mit Gefrierfach, Mikrowelle, Herdplatten, Backrohr, Geschirrspuler",
-    "Geschirr, Glaser, Kochutensilien sowie Geschirrspultabs und Spulmittel vorhanden",
-    "TV mit Kabelanschluss und WLAN",
-    "Badezimmer mit Badewanne, Duschvorhang, Waschbecken und Haarfon",
-    "Balkon",
-    "Hunde auf Anfrage erlaubt",
-    "Parkplatze direkt beim Haus",
-  ],
 } as const;
+
+export type FeatureIconKey = "bed" | "kitchen" | "bath" | "tv" | "extras";
+
+export const featureGroupsData: {
+  iconKey: FeatureIconKey;
+  label: string;
+  items: string[];
+}[] = [
+  {
+    iconKey: "bed",
+    label: "Wohnen & Schlafen",
+    items: [
+      "Einrichtung im Landhausstil / Bauernmobel / Vollholz (je nach Wohnung)",
+      "Bettwasche, Hand- und Badetucher, Geschirrtucher, Zusatzdecken",
+      "Sudbalkon mit Liegemoglichkeit",
+    ],
+  },
+  {
+    iconKey: "kitchen",
+    label: "Kuche",
+    items: [
+      "Kuche komplett ausgestattet (Toaster, Wasserkocher, Nespresso + Filterkapseln)",
+      "Kuhlschrank mit Gefrierfach, Mikrowelle, Herdplatten, Backrohr, Geschirrspuler",
+      "Geschirr, Glaser, Kochutensilien sowie Geschirrspultabs und Spulmittel vorhanden",
+    ],
+  },
+  {
+    iconKey: "bath",
+    label: "Badezimmer",
+    items: [
+      "Badezimmer mit Badewanne, Duschvorhang, Waschbecken und Haarfon",
+    ],
+  },
+  {
+    iconKey: "tv",
+    label: "Unterhaltung & Komfort",
+    items: [
+      "TV mit Kabelanschluss, WLAN und Alexa",
+    ],
+  },
+  {
+    iconKey: "extras",
+    label: "Sonstiges",
+    items: [
+      "Hunde auf Anfrage erlaubt",
+      "Parkplatze direkt beim Haus",
+    ],
+  },
+];
 
 export const seasonalData = {
   winter: {
