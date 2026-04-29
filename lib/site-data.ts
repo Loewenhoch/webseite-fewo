@@ -49,6 +49,7 @@ export const navData = [
   { label: "Unterkunft", href: "#unterkunft" },
   { label: "Ausstattung", href: "#ausstattung" },
   { label: "Winter & Sommer", href: "#erlebnis" },
+  { label: "Skigebiet", href: "/skigebiet" },
   { label: "Galerie", href: "#galerie" },
   { label: "Preise", href: "#preise" },
   { label: "Lage", href: "#lage" },
@@ -400,6 +401,35 @@ export const pricingData = {
     { label: "Betten Wohnung B14", value: "6 Betten" },
     { label: "Betten Wohnung B4", value: "6 Betten" },
   ],
+} as const;
+
+export const skigebietData = {
+  eyebrow: "Skigebiet Obertauern",
+  title: "100 km Piste. Schneesicher von November bis Mai.",
+  subtitle:
+    "Obertauern gehört zu den schneereichsten Skigebieten der Alpen. Auf 1.630 bis 2.313 Metern Höhe bietet das Gebiet lange Saisonen, moderne Liftanlagen und abwechslungsreiche Pisten für alle Könnerstufen – direkt vor der Haustüre.",
+  stats: [
+    { value: "100 km", label: "Markierte Pisten" },
+    { value: "26", label: "Lifte & Seilbahnen" },
+    { value: "1.630 – 2.313 m", label: "Höhenbereich" },
+    { value: "Nov – Mai", label: "Skisaison" },
+  ],
+  pistes: [
+    { color: "blue" as const, label: "Blau · leicht", km: 38 },
+    { color: "red" as const, label: "Rot · mittel", km: 44 },
+    { color: "black" as const, label: "Schwarz · schwer", km: 18 },
+  ],
+  circuit: {
+    title: "Der Obertauern Rundkurs",
+    text: "Obertauern ist bekannt für seinen einzigartigen Skikreis: Die Lifte sind ringförmig angeordnet, sodass man von fast jedem Punkt eine vollständige Runde durch das gesamte Skigebiet fahren kann – ohne die Ski abzuschnallen. Das macht den Ort besonders attraktiv für mehrtägige Aufenthalte.",
+  },
+  snowInfo: {
+    title: "Schneesicherheit",
+    text: "Durch die Lage auf über 1.600 Metern und die hohe Niederschlagsmenge zählt Obertauern zu den schneereichsten Orten Österreichs. Natürlicher Schnee liegt oft von November bis Mai. Zusätzliche Beschneiungsanlagen sichern die Saison auch in schneearmen Jahren.",
+  },
+  interactiveMapUrl: "https://winter.intermaps.com/obertauern?zoomCalculationMode=fitWidth",
+  pistenplanImage: "/assets/images/revision/documents/pistenplan-overview.jpg",
+  mapCtaLabel: "Pistenplan im Vollbild öffnen",
 } as const;
 
 export const pistePlanData = {
