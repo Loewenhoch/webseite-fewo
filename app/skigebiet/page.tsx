@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { ExternalLink, Snowflake, CircleDot, RefreshCw } from "lucide-react";
+import { ExternalLink, Snowflake, CircleDot, RefreshCw, ArrowLeft } from "lucide-react";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { SectionShell } from "@/components/ui/section-shell";
@@ -48,6 +48,13 @@ export default function SkigebietPage() {
         {/* ── Hero ── */}
         <SectionShell className="pb-16 sm:pb-20">
           <MotionReveal>
+            <Link
+              href="/"
+              className="mb-6 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.12em] text-slate-400/80 transition-colors hover:text-slate-200"
+            >
+              <ArrowLeft size={14} aria-hidden="true" />
+              Zurück zur Startseite
+            </Link>
             <span className="section-eyebrow">{skigebietData.eyebrow}</span>
             <h1 className="headline-xl mt-5 text-white">{skigebietData.title}</h1>
             <p className="mt-5 max-w-2xl text-sm leading-relaxed text-muted sm:text-base">

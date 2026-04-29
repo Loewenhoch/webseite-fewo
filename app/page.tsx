@@ -24,11 +24,11 @@ export default function HomePage() {
 
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <SeasonsOverview />
+        <PricingSection />
+        <LocationSection />
 
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <SkigebietTeaser />
-        <PricingSection />
-        <LocationSection />
         <InquirySection />
       </main>
       <Footer />
