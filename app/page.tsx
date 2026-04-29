@@ -8,6 +8,7 @@ import { GallerySection } from "@/components/sections/gallery-section";
 import { PricingSection } from "@/components/sections/pricing-section";
 import { LocationSection } from "@/components/sections/location-section";
 import { InquirySection } from "@/components/sections/inquiry-section";
+import { SkigebietTeaser } from "@/components/sections/skigebiet-teaser";
 
 export default function HomePage() {
   return (
@@ -23,6 +24,9 @@ export default function HomePage() {
 
         <div className="section-divider mx-auto w-[90%] max-w-7xl" />
         <SeasonsOverview />
+
+        <div className="section-divider mx-auto w-[90%] max-w-7xl" />
+        <SkigebietTeaser />
         <PricingSection />
         <LocationSection />
         <InquirySection />
