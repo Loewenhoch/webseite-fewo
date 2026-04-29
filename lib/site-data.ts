@@ -79,7 +79,7 @@ export const heroData = {
 } as const;
 
 export const accommodationIntroData = {
-  title: "Unterkunft & Lage",
+  title: "Unterkunft",
   intro:
     "Ferienwohnungen Platzer liegt zentral in Obertauern und trotzdem ruhig am Ende einer Privatstrasse.",
   text:
