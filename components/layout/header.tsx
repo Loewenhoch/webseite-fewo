@@ -44,12 +44,12 @@ export function Header() {
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-4 xl:flex">
+        <nav className="hidden items-center gap-3 lg:flex">
           {navData.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-[0.7rem] font-semibold uppercase tracking-[0.1em] text-slate-200/80 transition-colors hover:text-white"
+              className="text-[0.67rem] font-semibold uppercase tracking-[0.08em] text-slate-200/80 transition-colors hover:text-white"
             >
               {item.label}
             </Link>
@@ -59,7 +59,7 @@ export function Header() {
         <button
           type="button"
           aria-label={isOpen ? "Menue schliessen" : "Menue oeffnen"}
-          className="inline-flex rounded-xl border border-slate-300/25 bg-slate-900/55 p-2 text-slate-100 xl:hidden"
+          className="inline-flex rounded-xl border border-slate-300/25 bg-slate-900/55 p-2 text-slate-100 lg:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
         >
           {isOpen ? <X size={19} /> : <Menu size={19} />}
@@ -73,7 +73,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.28 }}
-            className="mx-auto mt-3 w-full max-w-7xl rounded-2xl border border-slate-200/30 bg-slate-950/90 p-4 shadow-[0_26px_40px_-24px_rgba(2,6,16,0.95)] backdrop-blur-xl xl:hidden"
+            className="mx-auto mt-3 w-full max-w-7xl rounded-2xl border border-slate-200/30 bg-slate-950/90 p-4 shadow-[0_26px_40px_-24px_rgba(2,6,16,0.95)] backdrop-blur-xl lg:hidden"
           >
             <nav className="flex flex-col gap-2">
               {navData.map((item) => (
