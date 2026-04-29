@@ -22,40 +22,38 @@ export function Header() {
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-7">
       <div
-        className={`mx-auto flex w-full max-w-7xl items-center justify-between rounded-2xl border px-4 py-1.5 transition-all duration-400 sm:px-5 ${
+        className={`mx-auto flex h-16 w-full max-w-7xl items-center justify-between rounded-2xl border px-5 transition-all duration-400 ${
           isScrolled
             ? "glass-panel border-slate-200/30 shadow-[0_20px_44px_-26px_rgba(2,6,16,0.9)]"
             : "border-slate-200/20 bg-slate-950/32"
         }`}
       >
-        <Link href="#top" className="flex items-center gap-2.5" aria-label="Zur Startseite">
+        <Link href="#top" className="flex items-center gap-3" aria-label="Zur Startseite">
           <Image
             src={brandData.logo}
             alt={`${brandData.name} Logo`}
             width={280}
             height={186}
-            sizes="(max-width: 640px) 130px, (max-width: 1024px) 150px, 165px"
-            className="h-auto w-[8rem] object-contain mix-blend-screen opacity-95 sm:w-[9.3rem]"
+            sizes="(max-width: 640px) 110px, 130px"
+            className="h-9 w-auto object-contain mix-blend-screen opacity-95"
           />
-          <div className="leading-tight">
+          <div className="hidden h-7 w-px bg-slate-200/20 sm:block" />
+          <div className="hidden leading-tight sm:block">
             <p className="text-sm font-semibold tracking-wide text-strong">{brandData.name}</p>
-            <p className="text-[0.69rem] uppercase tracking-[0.2em] text-slate-300/80">{brandData.locationTag}</p>
+            <p className="text-[0.65rem] uppercase tracking-[0.2em] text-slate-300/70">{brandData.locationTag}</p>
           </div>
         </Link>
 
-        <nav className="hidden items-center gap-5 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {navData.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-200/85 transition-colors hover:text-white"
+              className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-200/80 transition-colors hover:text-white"
             >
               {item.label}
             </Link>
           ))}
-          <Link href="#anfrage" className="primary-btn ml-2">
-            Jetzt anfragen
-          </Link>
         </nav>
 
         <button
@@ -88,9 +86,6 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
-              <Link href="#anfrage" onClick={() => setIsOpen(false)} className="primary-btn mt-2 text-center">
-                Jetzt anfragen
-              </Link>
             </nav>
           </motion.div>
         ) : null}
