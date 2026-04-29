@@ -35,7 +35,7 @@ export function Header() {
             width={280}
             height={186}
             sizes="(max-width: 640px) 110px, 130px"
-            className="h-9 w-auto object-contain mix-blend-screen opacity-95"
+            className="h-12 w-auto object-contain mix-blend-screen opacity-95"
           />
           <div className="hidden h-7 w-px bg-slate-200/20 sm:block" />
           <div className="hidden leading-tight sm:block">
