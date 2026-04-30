@@ -32,7 +32,7 @@ export type ApartmentInfo = {
 export const seoData = {
   title: "Ferienwohnungen Platzer | Obertauern",
   description:
-    "Ferienwohnungen Platzer in Obertauern: zentrale und ruhige Lage, zwei gepflegte Wohnungen (B14 und B4), Winterfokus und klare Infos fur Ihre Anfrage.",
+    "Ferienwohnungen Platzer in Obertauern: zentrale und ruhige Lage, zwei gepflegte Wohnungen (B14 und B4), Winterfokus und klare Infos für Ihre Anfrage.",
   siteUrl: "https://www.platzer-obertauern.at",
 } as const;
 
@@ -42,7 +42,7 @@ export const brandData = {
   logo: "/assets/images/branding/logo-neu-weiss-2026.png",
   heroHeadline: "Winterurlaub in Obertauern. Ruhig wohnen. Schnell auf der Piste.",
   heroSubline:
-    "Zwei Ferienwohnungen in zentraler Lage am Ende einer Privatstrasse mit Parkplatz direkt beim Haus.",
+    "Ferienwohnungen in zentraler Lage am Ende einer Privatstraße mit Parkplatz direkt beim Haus.",
 } as const;
 
 export const navData = [
@@ -60,7 +60,7 @@ export const heroData = {
   eyebrow: "Ferienwohnungen Platzer",
   headline: "Winterurlaub in Obertauern. Ruhig wohnen. Schnell auf der Piste.",
   subline:
-    "Ferienwohnungen in zentraler Lage am Ende einer Privatstrasse. Parkplatz direkt beim Haus, vollständige Ausstattung und kurze Wege im Skiurlaub.",
+    "Ferienwohnungen in zentraler Lage am Ende einer Privatstraße. Parkplatz direkt beim Haus, vollständige Ausstattung und kurze Wege im Skiurlaub.",
   primaryCta: { label: "Jetzt anfragen", href: "#anfrage" },
   secondaryCta: { label: "Preise ansehen", href: "#preise" },
   images: [
@@ -70,11 +70,11 @@ export const heroData = {
     },
     {
       src: "/assets/images/revision/winter/winter-evening-panorama.jpg",
-      alt: "Abendstimmung uber Obertauern im Winter",
+      alt: "Abendstimmung über Obertauern im Winter",
     },
     {
       src: "/assets/images/winter/custom/hero-ski-duo-panorama.jpg",
-      alt: "Zwei Skifahrer mit Panoramablick uber Obertauern",
+      alt: "Zwei Skifahrer mit Panoramablick über Obertauern",
     },
   ],
 } as const;
@@ -82,14 +82,14 @@ export const heroData = {
 export const accommodationIntroData = {
   title: "Unterkunft",
   intro:
-    "Ferienwohnungen Platzer liegt zentral in Obertauern und trotzdem ruhig am Ende einer Privatstrasse.",
+    "Ferienwohnungen Platzer liegt zentral in Obertauern und trotzdem ruhig am Ende einer Privatstraße.",
   text:
-    "Direkt beim Haus stehen Parkplatze zur Verfugung. Damit bleibt der Aufenthalt unkompliziert: morgens schnell ins Skigebiet, abends entspannt zuruck in die Wohnung. Auch im Sommer ist die Lage ein praktischer Ausgangspunkt fur Touren und ruhige Tage in den Bergen.",
+    "Direkt beim Haus stehen Parkplätze zur Verfügung. Damit bleibt der Aufenthalt unkompliziert: morgens schnell ins Skigebiet, abends entspannt zurück in die Wohnung. Auch im Sommer ist die Lage ein praktischer Ausgangspunkt für Touren und ruhige Tage in den Bergen.",
   bullets: [
     "Zentral in Obertauern",
-    "Ruhige Lage am Ende einer Privatstrasse",
-    "Parkplatze direkt beim Haus",
-    "Geeignet fur Winterurlaub und Sommeraufenthalt",
+    "Ruhige Lage am Ende einer Privatstraße",
+    "Parkplätze direkt beim Haus",
+    "Geeignet für Winterurlaub und Sommeraufenthalt",
   ],
   images: [
     {
@@ -98,7 +98,7 @@ export const accommodationIntroData = {
     },
     {
       src: "/assets/images/revision/house/house-front-dog.jpg",
-      alt: "Hausansicht mit Zufahrt und Parkplatz vor dem Gebaeude",
+      alt: "Hausansicht mit Zufahrt und Parkplatz vor dem Gebäude",
     },
     {
       src: "/assets/images/revision/house/house-slope-side.jpg",
@@ -111,25 +111,24 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
   b14: {
     id: "b14",
     title: "Wohnung B14",
-    subtitle: "Bauernmobel aus Vollholz, kompakt und wohnlich",
+    subtitle: "Bauernmöbel aus Vollholz, kompakt und wohnlich",
     description:
-      "Die Wohnung B14 ist im klassischen Vollholz-Stil eingerichtet und verbindet Wohn-, Ess- und Schlafzonen auf praktikable Weise fur den Urlaub.",
+      "Die Wohnung B14 ist im klassischen Vollholz-Stil eingerichtet und verbindet Wohn-, Ess- und Schlafzonen auf praktikable Weise für den Urlaub.",
     occupancy: "Bis zu 6 Personen (je nach Belegung)",
     beds: "6 Betten",
-    style: "Bauernmobel Vollholz (Voglauer)",
+    style: "Bauernmöbel Vollholz (Voglauer)",
     highlights: [
       "Sitz- und Essbereich mit Trennoption per Rollo",
-      "Kuche komplett ausgestattet",
+      "Küche komplett ausgestattet",
       "Bad mit Badewanne und Duschvorhang",
-      "Sudbalkon",
+      "Südbalkon",
     ],
     images: [
-      // Wohnung B14: Nur Bilder aus "uberarbeitung datein  fewo/footos wohnung b14"
       { src: "/assets/images/revision/apartments/b14/b14-living-dining.jpg", alt: "Wohnung B14 Wohn- und Essbereich" },
       { src: "/assets/images/revision/apartments/b14/b14-lounge.jpg", alt: "Wohnung B14 Sitzbereich" },
       { src: "/assets/images/revision/apartments/b14/b14-bunk-bed.jpg", alt: "Wohnung B14 Stockbett" },
       { src: "/assets/images/revision/apartments/b14/b14-bathroom.jpg", alt: "Wohnung B14 Badezimmer" },
-      { src: "/assets/images/revision/apartments/b14/b14-kitchen.jpg", alt: "Wohnung B14 Kuche mit Essplatz" },
+      { src: "/assets/images/revision/apartments/b14/b14-kitchen.jpg", alt: "Wohnung B14 Küche mit Essplatz" },
     ],
   },
   b4: {
@@ -137,24 +136,23 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
     title: "Wohnung B4",
     subtitle: "Landhausstil in heller Eiche mit klarer Aufteilung",
     description:
-      "Die Wohnung B4 setzt auf einen helleren Landhausstil und bietet einen offenen Wohnraum mit Schlafmoglichkeiten und integrierter Kuche.",
+      "Die Wohnung B4 setzt auf einen helleren Landhausstil und bietet einen offenen Wohnraum mit Schlafmöglichkeiten und integrierter Küche.",
     occupancy: "Bis zu 6 Personen (je nach Belegung)",
     beds: "6 Betten",
     style: "Landhausstil in Eiche hell",
     highlights: [
       "Offener Wohnbereich mit TV",
-      "Kompletter Kuchenblock mit Geraten und Utensilien",
+      "Kompletter Küchenblock mit Geräten und Utensilien",
       "Bad mit Badewanne und Duschvorhang",
-      "Sudbalkon",
+      "Südbalkon",
     ],
     images: [
-      // Wohnung B4: Nur Bilder aus "uberarbeitung datein  fewo/footos wohnung b4"
-      { src: "/assets/images/revision/apartments/b4/b4-kitchen-living.jpg", alt: "Wohnung B4 Kuche und Wohnbereich" },
-      { src: "/assets/images/revision/apartments/b4/b4-kitchen-dining.jpg", alt: "Wohnung B4 Kuchen- und Essbereich" },
+      { src: "/assets/images/revision/apartments/b4/b4-kitchen-living.jpg", alt: "Wohnung B4 Küche und Wohnbereich" },
+      { src: "/assets/images/revision/apartments/b4/b4-kitchen-dining.jpg", alt: "Wohnung B4 Küchen- und Essbereich" },
       { src: "/assets/images/revision/apartments/b4/b4-lounge.jpg", alt: "Wohnung B4 Sitzbereich" },
       { src: "/assets/images/revision/apartments/b4/b4-living-tv.jpg", alt: "Wohnung B4 Wohnbereich mit TV" },
       { src: "/assets/images/revision/apartments/b4/b4-sofa-bed.jpg", alt: "Wohnung B4 Ausziehdoppelbett" },
-      { src: "/assets/images/revision/apartments/b4/b4-room-overview.jpg", alt: "Wohnung B4 Raumubersicht" },
+      { src: "/assets/images/revision/apartments/b4/b4-room-overview.jpg", alt: "Wohnung B4 Raumübersicht" },
       { src: "/assets/images/revision/apartments/b4/b4-bathroom.jpg", alt: "Wohnung B4 Badezimmer" },
     ],
   },
@@ -162,7 +160,7 @@ export const apartmentData: { b14: ApartmentInfo; b4: ApartmentInfo } = {
 
 export const featuresData = {
   title: "Ausstattung",
-  subtitle: "Nur echte und verlassliche Angaben fur den Aufenthalt.",
+  subtitle: "Nur echte und verlässliche Angaben für den Aufenthalt.",
 } as const;
 
 export type FeatureIconKey = "bed" | "kitchen" | "bath" | "tv" | "extras";
@@ -176,25 +174,25 @@ export const featureGroupsData: {
     iconKey: "bed",
     label: "Wohnen & Schlafen",
     items: [
-      "Einrichtung im Landhausstil / Bauernmobel / Vollholz (je nach Wohnung)",
-      "Bettwasche, Hand- und Badetucher, Geschirrtucher, Zusatzdecken",
-      "Sudbalkon mit Liegemoglichkeit",
+      "Einrichtung im Landhausstil / Bauernmöbel / Vollholz (je nach Wohnung)",
+      "Bettwäsche, Hand- und Badetücher, Geschirrtücher, Zusatzdecken",
+      "Südbalkon mit Liegemöglichkeit",
     ],
   },
   {
     iconKey: "kitchen",
-    label: "Kuche",
+    label: "Küche",
     items: [
-      "Kuche komplett ausgestattet (Toaster, Wasserkocher, Nespresso + Filterkapseln)",
-      "Kuhlschrank mit Gefrierfach, Mikrowelle, Herdplatten, Backrohr, Geschirrspuler",
-      "Geschirr, Glaser, Kochutensilien sowie Geschirrspultabs und Spulmittel vorhanden",
+      "Küche komplett ausgestattet (Toaster, Wasserkocher, Nespresso + Filterkapseln)",
+      "Kühlschrank mit Gefrierfach, Mikrowelle, Herdplatten, Backrohr, Geschirrspüler",
+      "Geschirr, Gläser, Kochutensilien sowie Geschirrspültabs und Spülmittel vorhanden",
     ],
   },
   {
     iconKey: "bath",
     label: "Badezimmer",
     items: [
-      "Badezimmer mit Badewanne, Duschvorhang, Waschbecken und Haarfon",
+      "Badezimmer mit Badewanne, Duschvorhang, Waschbecken und Haarfön",
     ],
   },
   {
@@ -209,7 +207,7 @@ export const featureGroupsData: {
     label: "Sonstiges",
     items: [
       "Hunde auf Anfrage erlaubt",
-      "Parkplatze direkt beim Haus",
+      "Parkplätze direkt beim Haus",
     ],
   },
 ];
@@ -218,11 +216,11 @@ export const seasonalData = {
   winter: {
     title: "Winter in Obertauern",
     text:
-      "Der Winter ist die Hauptsaison: kurze Wege ins Skigebiet, klare Bergluft und eine Unterkunft, in die man nach dem Skitag gerne zuruckkommt.",
+      "Der Winter ist die Hauptsaison: kurze Wege ins Skigebiet, klare Bergluft und eine Unterkunft, in die man nach dem Skitag gerne zurückkommt.",
     bullets: [
       "Skiurlaub mit schneller Erreichbarkeit der Lifte",
-      "Schneesichere Hohenlage in Obertauern",
-      "Alpine Atmosphare mit klarem Winterfokus",
+      "Schneesichere Höhenlage in Obertauern",
+      "Alpine Atmosphäre mit klarem Winterfokus",
     ],
     images: [
       {
@@ -302,14 +300,14 @@ export const galleryData: {
     },
     {
       src: "/assets/images/revision/apartments/b14/b14-kitchen.jpg",
-      alt: "Wohnung B14 Kuche",
-      title: "B14 Kuche",
+      alt: "Wohnung B14 Küche",
+      title: "B14 Küche",
       category: "b14",
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-kitchen-living.jpg",
-      alt: "Wohnung B4 Kuche und Wohnbereich",
-      title: "B4 Wohnkuche",
+      alt: "Wohnung B4 Küche und Wohnbereich",
+      title: "B4 Wohnküche",
       category: "b4",
     },
     {
@@ -338,8 +336,8 @@ export const galleryData: {
     },
     {
       src: "/assets/images/revision/apartments/b4/b4-room-overview.jpg",
-      alt: "Wohnung B4 Raumubersicht",
-      title: "B4 Ubersicht",
+      alt: "Wohnung B4 Raumübersicht",
+      title: "B4 Übersicht",
       category: "b4",
     },
     {
@@ -357,12 +355,12 @@ export const galleryData: {
     {
       src: "/assets/images/revision/winter/winter-horse-sleigh.jpg",
       alt: "Pferdeschlitten im Winter",
-      title: "Winteratmosphare",
+      title: "Winteratmosphäre",
       category: "winter",
     },
     {
       src: "/assets/images/revision/winter/winter-evening-panorama.jpg",
-      alt: "Obertauern in der Abenddammerung",
+      alt: "Obertauern in der Abenddämmerung",
       title: "Abendpanorama",
       category: "winter",
     },
@@ -434,10 +432,10 @@ export const skigebietData = {
 
 export const pistePlanData = {
   title: "Interaktiver Pistenplan",
-  text: "Hier sehen Sie den Pistenplan als Ubersicht. Den interaktiven Plan offnen Sie direkt uber den Link darunter.",
+  text: "Hier sehen Sie den Pistenplan als Übersicht. Den interaktiven Plan öffnen Sie direkt über den Link darunter.",
   image: "/assets/images/revision/documents/pistenplan-overview.jpg",
   interactiveSlopeMapUrl: "https://winter.intermaps.com/obertauern?zoomCalculationMode=fitWidth",
-  ctaLabel: "Interaktiven Pistenplan offnen",
+  ctaLabel: "Interaktiven Pistenplan öffnen",
 } as const;
 
 export const locationData = {
@@ -454,9 +452,9 @@ export const locationData = {
 
 export const inquiryData = {
   title: "Unverbindlich anfragen",
-  text: "Senden Sie uns Ihre Reisedaten. Wir melden uns mit einem passenden Angebot zuruck.",
+  text: "Senden Sie uns Ihre Reisedaten. Wir melden uns mit einem passenden Angebot zurück.",
   cta: "Anfrage senden",
-  success: "Vielen Dank. Ihre Anfrage wurde erfolgreich ubermittelt.",
+  success: "Vielen Dank. Ihre Anfrage wurde erfolgreich übermittelt.",
 } as const;
 
 export const contactData = {
@@ -471,4 +469,3 @@ export const legalLinks = {
   datenschutz: "/datenschutz",
   agb: "/assets/docs/agb/AGBH_061115.pdf",
 } as const;
-

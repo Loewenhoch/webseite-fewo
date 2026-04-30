@@ -9,22 +9,23 @@ export function SeasonsOverview() {
     <SectionShell id="erlebnis" className="py-20 sm:py-24">
       <MotionReveal>
         <span className="section-eyebrow">Winter & Sommer</span>
-        <h2 className="headline-lg mt-4 text-white">Obertauern ganzjahrig erleben</h2>
+        <h2 className="headline-lg mt-4 text-white">Obertauern ganzjährig erleben</h2>
         <p className="mt-3 max-w-3xl text-sm text-muted sm:text-base">
-          Schwerpunkt ist der Winterurlaub. Im Sommer bleibt die Lage ein ruhiger Ausgangspunkt fur Wander- und Biketage.
+          Schwerpunkt ist der Winterurlaub. Im Sommer bleibt die Lage ein ruhiger Ausgangspunkt für Wander- und Biketage.
         </p>
       </MotionReveal>
 
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
         <MotionReveal>
-          <article className="overflow-hidden rounded-3xl border border-slate-300/20 bg-[linear-gradient(160deg,rgba(12,28,52,0.92),rgba(8,18,36,0.84))]">
+          <article className="group overflow-hidden rounded-3xl border border-slate-300/20 bg-[linear-gradient(160deg,rgba(12,28,52,0.92),rgba(8,18,36,0.84))]">
             <div className="relative h-56">
               <Image
                 src={seasonalData.winter.images[0].src}
                 alt={seasonalData.winter.images[0].alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 48vw"
-                className="object-cover"
+                data-lightbox="true"
+                className="object-cover transition duration-500 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 to-transparent" />
             </div>
@@ -43,14 +44,15 @@ export function SeasonsOverview() {
         </MotionReveal>
 
         <MotionReveal delay={0.06}>
-          <article className="overflow-hidden rounded-3xl border border-slate-300/20 bg-[linear-gradient(160deg,rgba(17,42,56,0.9),rgba(9,26,41,0.82))]">
+          <article className="group overflow-hidden rounded-3xl border border-slate-300/20 bg-[linear-gradient(160deg,rgba(17,42,56,0.9),rgba(9,26,41,0.82))]">
             <div className="relative h-56">
               <Image
                 src={seasonalData.summer.images[0].src}
                 alt={seasonalData.summer.images[0].alt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 48vw"
-                className="object-cover"
+                data-lightbox="true"
+                className="object-cover transition duration-500 group-hover:scale-[1.04]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 to-transparent" />
             </div>

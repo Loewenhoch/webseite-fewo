@@ -168,7 +168,7 @@ export function FeaturesSection() {
               <div className="pointer-events-none absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover:bg-black/22">
                 <span className="flex items-center gap-1.5 rounded-full border border-white/35 bg-black/52 px-3.5 py-2 text-[0.7rem] font-semibold uppercase tracking-[0.14em] text-white opacity-0 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-100">
                   <Expand size={12} />
-                  Vergrossern
+                  Vergrößern
                 </span>
               </div>
 
