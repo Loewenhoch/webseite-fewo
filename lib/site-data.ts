@@ -93,8 +93,8 @@ export const accommodationIntroData = {
   ],
   images: [
     {
-      src: "/assets/images/revision/house/house-front-winter.jpg",
-      alt: "Hausansicht der Unterkunft im Winter",
+      src: "/assets/images/revision/house/house-parking-lane.jpg",
+      alt: "Hausansicht mit Parkplatz im Winter",
     },
     {
       src: "/assets/images/revision/house/house-front-dog.jpg",
