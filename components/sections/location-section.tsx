@@ -112,7 +112,7 @@ export function LocationSection() {
             {/* Wide panorama — gives geographic context */}
             <div className="group kinetic-card relative cursor-zoom-in overflow-hidden rounded-2xl border border-white/26 bg-white/12">
               <Image
-                src="/assets/images/revision/winter/winter-evening-panorama.jpg"
+                src="/assets/images/revision/winter/winter-obertauern-panorama-new.jpg"
                 alt="Obertauern – Blick auf den Ort im Winter"
                 width={1200}
                 height={800}
