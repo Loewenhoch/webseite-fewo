@@ -3,8 +3,10 @@ import { Mail, Phone, MapPin } from "lucide-react";
 import { contactData, legalLinks, navData } from "@/lib/site-data";
 
 export function Footer() {
+  const phoneHref = `tel:${contactData.phone.replace(/\s+/g, "").replace(/\(0\)/g, "")}`;
+
   return (
-    <footer className="mt-16 border-t border-slate-300/15 bg-[linear-gradient(180deg,#090f1d,#070c18)] py-14">
+    <footer className="mt-16 border-t border-white/18 bg-[linear-gradient(180deg,rgba(32,73,104,0.88),rgba(16,35,56,0.96))] py-14">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-5 sm:grid-cols-2 sm:px-8 lg:grid-cols-[1.2fr_1fr_1fr] lg:px-12">
         <div>
           <p className="font-display text-3xl text-white">{contactData.name}</p>
@@ -13,7 +15,7 @@ export function Footer() {
           <div className="mt-5 space-y-2 text-sm text-slate-200/90">
             <p className="flex items-center gap-2">
               <Phone size={15} aria-hidden="true" />
-              <a href={`tel:${contactData.phone}`} className="hover:text-white">
+              <a href={phoneHref} className="hover:text-white">
                 {contactData.phone}
               </a>
             </p>

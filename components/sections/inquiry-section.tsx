@@ -167,7 +167,7 @@ export function InquirySection() {
   };
 
   return (
-    <SectionShell id="anfrage" className="py-20 sm:py-24">
+    <SectionShell id="anfrage" className="section-band py-20 sm:py-24">
       <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
         <MotionReveal>
           <span className="section-eyebrow">Anfrage</span>
@@ -179,7 +179,7 @@ export function InquirySection() {
           <form
             onSubmit={onSubmit}
             noValidate
-            className="rounded-3xl border border-slate-300/23 bg-[linear-gradient(160deg,rgba(15,30,55,0.9),rgba(8,18,35,0.84))] p-6 shadow-[0_30px_55px_-35px_rgba(0,0,0,0.9)]"
+            className="rounded-3xl border border-white/26 bg-[linear-gradient(160deg,rgba(255,255,255,0.16),rgba(32,77,111,0.44))] p-6 shadow-[0_30px_70px_-42px_rgba(0,0,0,0.9)] backdrop-blur-md"
           >
               <div className="grid gap-4 sm:grid-cols-2">
                 <label className="text-sm text-slate-100/90">

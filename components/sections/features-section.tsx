@@ -39,10 +39,6 @@ export function FeaturesSection() {
   const images = apartmentData[activeTab].images;
 
   useEffect(() => {
-    setActiveIndex(0);
-  }, [activeTab]);
-
-  useEffect(() => {
     if (paused) return;
     const id = setInterval(() => {
       setActiveIndex((i) => (i + 1) % images.length);
@@ -62,7 +58,7 @@ export function FeaturesSection() {
   const current = images[activeIndex];
 
   return (
-    <SectionShell id="ausstattung" className="py-20 sm:py-28">
+    <SectionShell id="ausstattung" className="section-band py-20 sm:py-28">
       <MotionReveal>
         <span className="section-eyebrow">Ausstattung</span>
         <h2 className="headline-lg mt-4 text-white">{featuresData.title}</h2>
@@ -77,9 +73,9 @@ export function FeaturesSection() {
             const Icon = ICON_MAP[group.iconKey];
             return (
               <MotionReveal key={group.label} delay={gi * 0.08}>
-                <div className="rounded-2xl border border-slate-300/15 bg-gradient-to-br from-[rgba(13,27,49,0.90)] to-[rgba(8,17,33,0.72)] p-5 sm:p-6">
+                <div className="kinetic-card rounded-2xl border border-white/22 bg-gradient-to-br from-[rgba(255,255,255,0.16)] to-[rgba(34,78,112,0.38)] p-5 backdrop-blur-md sm:p-6">
                   <div className="mb-3.5 flex items-center gap-3">
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-[#cfe0f2]/25 bg-[#cfe0f2]/10 text-[#c8dff2]">
+                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-xl border border-white/30 bg-white/16 text-[#e5f5ff]">
                       <Icon size={16} />
                     </span>
                     <h3 className="text-xs font-bold uppercase tracking-[0.16em] text-slate-300/80">
@@ -113,12 +109,12 @@ export function FeaturesSection() {
 
         {/* ── Right: Apartment image panel ── */}
         <MotionReveal delay={0.12} className="lg:sticky lg:top-28 lg:self-start">
-          <div className="overflow-hidden rounded-3xl border border-slate-300/20 bg-slate-900/50">
+          <div className="overflow-hidden rounded-3xl border border-white/28 bg-white/12 shadow-[0_32px_80px_-44px_rgba(2,12,24,0.95)] backdrop-blur-md">
 
             {/* Tab switcher with sliding indicator */}
             <div className="relative flex border-b border-slate-300/12">
               <motion.div
-                className="absolute inset-y-0 w-1/2 bg-slate-700/45"
+                className="absolute inset-y-0 w-1/2 bg-white/18"
                 animate={{ x: activeTab === "b14" ? "0%" : "100%" }}
                 transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
               />
@@ -126,7 +122,10 @@ export function FeaturesSection() {
                 <button
                   key={tab.key}
                   type="button"
-                  onClick={() => setActiveTab(tab.key)}
+                  onClick={() => {
+                    setActiveTab(tab.key);
+                    setActiveIndex(0);
+                  }}
                   className={`relative z-10 flex-1 px-3 py-3.5 text-xs font-bold uppercase tracking-[0.15em] transition-colors duration-200 ${
                     activeTab === tab.key
                       ? "text-white"
@@ -158,7 +157,7 @@ export function FeaturesSection() {
                     alt={current.alt}
                     fill
                     sizes="(max-width: 1024px) 100vw, 440px"
-                    className="object-cover"
+                    className="image-lift object-cover"
                     data-lightbox="true"
                   />
                 </motion.div>

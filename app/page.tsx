@@ -9,10 +9,13 @@ import { PricingSection } from "@/components/sections/pricing-section";
 import { LocationSection } from "@/components/sections/location-section";
 import { InquirySection } from "@/components/sections/inquiry-section";
 import { SkigebietTeaser } from "@/components/sections/skigebiet-teaser";
+import { ScrollProgress } from "@/components/ui/scroll-progress";
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-transparent text-slate-100">
+    <div className="relative min-h-screen overflow-hidden bg-transparent text-slate-100">
+      <ScrollProgress />
+      <div aria-hidden="true" className="site-backdrop" />
       <Header />
       <main>
         <Hero />

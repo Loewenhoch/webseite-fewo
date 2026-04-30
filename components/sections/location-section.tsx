@@ -26,7 +26,7 @@ const KEY_FACTS = [
 
 export function LocationSection() {
   return (
-    <SectionShell id="lage" className="py-20 sm:py-28">
+    <SectionShell id="lage" className="section-band py-20 sm:py-28">
 
       {/* Header */}
       <MotionReveal>
@@ -43,10 +43,10 @@ export function LocationSection() {
           {KEY_FACTS.map(({ icon: Icon, label, value }) => (
             <div
               key={label}
-              className="flex flex-col gap-2 rounded-2xl border border-slate-300/15 bg-slate-900/35 p-4 sm:p-5"
+              className="kinetic-card flex flex-col gap-2 rounded-2xl border border-white/22 bg-white/12 p-4 backdrop-blur-md sm:p-5"
             >
               <div className="flex items-center gap-2">
-                <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-[#cfe0f2]/20 bg-[#cfe0f2]/10 text-[#c8dff2]">
+                <span className="inline-flex h-7 w-7 items-center justify-center rounded-lg border border-white/30 bg-white/16 text-[#e5f5ff]">
                   <Icon size={14} />
                 </span>
                 <span className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
@@ -67,14 +67,14 @@ export function LocationSection() {
           <div className="flex flex-col gap-5">
 
             {/* Static map — clickable lightbox */}
-            <div className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-slate-300/20">
+            <div className="group kinetic-card relative cursor-zoom-in overflow-hidden rounded-2xl border border-white/26 bg-white/12">
               <Image
                 src={locationData.staticMapImage}
                 alt="Lageplan Zirbenstraße 3, Obertauern"
                 width={1400}
                 height={900}
                 data-lightbox="true"
-                className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                className="image-lift h-auto w-full object-cover"
               />
               <div className="pointer-events-none absolute bottom-3 left-3">
                 <span className="rounded-full border border-white/22 bg-black/58 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-white backdrop-blur-sm">
@@ -84,7 +84,7 @@ export function LocationSection() {
             </div>
 
             {/* Navigation card */}
-            <div className="rounded-2xl border border-slate-300/15 bg-slate-900/40 p-5">
+            <div className="rounded-2xl border border-white/22 bg-white/12 p-5 backdrop-blur-md">
               <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
                 Navigation & Anfahrt
               </p>
@@ -110,14 +110,14 @@ export function LocationSection() {
           <div className="flex flex-col gap-5">
 
             {/* Wide panorama — gives geographic context */}
-            <div className="group relative cursor-zoom-in overflow-hidden rounded-2xl border border-slate-300/20">
+            <div className="group kinetic-card relative cursor-zoom-in overflow-hidden rounded-2xl border border-white/26 bg-white/12">
               <Image
                 src="/assets/images/revision/winter/winter-evening-panorama.jpg"
                 alt="Obertauern – Blick auf den Ort im Winter"
                 width={1200}
                 height={800}
                 data-lightbox="true"
-                className="h-64 w-full object-cover transition-transform duration-700 group-hover:scale-[1.03] sm:h-72"
+                className="image-lift h-64 w-full object-cover sm:h-72"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
               <div className="pointer-events-none absolute bottom-4 left-4">
@@ -129,7 +129,7 @@ export function LocationSection() {
             </div>
 
             {/* Info card */}
-            <div className="rounded-2xl border border-slate-300/15 bg-gradient-to-br from-[rgba(13,27,49,0.90)] to-[rgba(8,17,33,0.72)] p-5 sm:p-6">
+            <div className="rounded-2xl border border-white/22 bg-gradient-to-br from-[rgba(255,255,255,0.16)] to-[rgba(28,74,107,0.36)] p-5 backdrop-blur-md sm:p-6">
               <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
                 So finden Sie uns
               </p>

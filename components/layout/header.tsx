@@ -24,8 +24,8 @@ export function Header() {
       <div
         className={`mx-auto flex h-16 w-full max-w-7xl items-center justify-between rounded-2xl border px-5 transition-all duration-400 ${
           isScrolled
-            ? "glass-panel border-slate-200/30 shadow-[0_20px_44px_-26px_rgba(2,6,16,0.9)]"
-            : "border-slate-200/20 bg-slate-950/32"
+            ? "glass-panel border-white/35 shadow-[0_20px_44px_-26px_rgba(2,6,16,0.9)]"
+            : "border-white/24 bg-white/10 backdrop-blur-md"
         }`}
       >
         {/* Logo + Brand text — alles vertikal zentriert */}
@@ -35,6 +35,7 @@ export function Header() {
             alt={`${brandData.name} Logo`}
             width={280}
             height={186}
+            priority
             sizes="(max-width: 640px) 110px, 130px"
             className="h-15 w-auto self-center object-contain mix-blend-screen opacity-95"
           />
@@ -62,7 +63,7 @@ export function Header() {
         <button
           type="button"
           aria-label={isOpen ? "Menue schliessen" : "Menue oeffnen"}
-          className="inline-flex rounded-xl border border-slate-300/25 bg-slate-900/55 p-2 text-slate-100 lg:hidden"
+          className="inline-flex rounded-xl border border-white/28 bg-white/14 p-2 text-slate-100 backdrop-blur-md lg:hidden"
           onClick={() => setIsOpen((prev) => !prev)}
         >
           {isOpen ? <X size={19} /> : <Menu size={19} />}
@@ -76,7 +77,7 @@ export function Header() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.28 }}
-            className="mx-auto mt-3 w-full max-w-7xl rounded-2xl border border-slate-200/30 bg-slate-950/90 p-4 shadow-[0_26px_40px_-24px_rgba(2,6,16,0.95)] backdrop-blur-xl lg:hidden"
+            className="mx-auto mt-3 w-full max-w-7xl rounded-2xl border border-white/30 bg-[#1a3854]/92 p-4 shadow-[0_26px_40px_-24px_rgba(2,6,16,0.95)] backdrop-blur-xl lg:hidden"
           >
             <nav className="flex flex-col gap-2">
               {navData.map((item) => (

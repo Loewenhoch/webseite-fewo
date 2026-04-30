@@ -7,7 +7,7 @@ import { skigebietData } from "@/lib/site-data";
 
 export function SkigebietTeaser() {
   return (
-    <SectionShell id="skigebiet-teaser" className="py-20 sm:py-24">
+    <SectionShell id="skigebiet-teaser" className="section-band py-20 sm:py-24">
       <div className="grid gap-8 lg:grid-cols-[1fr_420px] lg:gap-12 lg:items-center">
 
         {/* Left: Text + Stats + CTA */}
@@ -23,7 +23,7 @@ export function SkigebietTeaser() {
             {skigebietData.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-xl border border-slate-300/15 bg-slate-900/35 px-4 py-3 text-center"
+                className="kinetic-card rounded-xl border border-white/22 bg-white/12 px-4 py-3 text-center backdrop-blur-md"
               >
                 <p className="font-display text-xl font-semibold text-white sm:text-2xl">{stat.value}</p>
                 <p className="mt-1 text-[0.6rem] font-bold uppercase tracking-[0.14em] text-slate-400/75">
@@ -46,14 +46,14 @@ export function SkigebietTeaser() {
 
         {/* Right: Pistenplan image */}
         <MotionReveal delay={0.1}>
-          <Link href="/skigebiet" className="group block overflow-hidden rounded-2xl border border-slate-300/20">
+          <Link href="/skigebiet" className="group kinetic-card block overflow-hidden rounded-2xl border border-white/26 bg-white/12">
             <div className="relative">
               <Image
                 src={skigebietData.pistenplanImage}
                 alt="Pistenplan Obertauern – Alles über das Skigebiet"
                 width={900}
                 height={520}
-                className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-[1.04] sm:h-64"
+                className="image-lift h-56 w-full object-cover sm:h-64"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
               <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between">

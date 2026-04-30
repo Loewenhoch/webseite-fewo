@@ -6,7 +6,7 @@ import { seasonalData } from "@/lib/site-data";
 
 export function SeasonsOverview() {
   return (
-    <SectionShell id="erlebnis" className="py-20 sm:py-24">
+    <SectionShell id="erlebnis" className="section-band py-20 sm:py-24">
       <MotionReveal>
         <span className="section-eyebrow">Winter & Sommer</span>
         <h2 className="headline-lg mt-4 text-white">Obertauern ganzjährig erleben</h2>
@@ -17,7 +17,7 @@ export function SeasonsOverview() {
 
       <div className="mt-8 grid gap-5 lg:grid-cols-2">
         <MotionReveal>
-          <article className="group overflow-hidden rounded-3xl border border-slate-300/20 bg-[linear-gradient(160deg,rgba(12,28,52,0.92),rgba(8,18,36,0.84))]">
+          <article className="group kinetic-card overflow-hidden rounded-3xl border border-white/26 bg-[linear-gradient(160deg,rgba(41,91,129,0.9),rgba(15,44,72,0.74))]">
             <div className="relative h-56">
               <Image
                 src={seasonalData.winter.images[0].src}
@@ -25,9 +25,9 @@ export function SeasonsOverview() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 data-lightbox="true"
-                className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                className="image-lift object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/56 via-transparent to-sky-100/10" />
             </div>
             <div className="p-5">
               <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-200/84">
@@ -44,7 +44,7 @@ export function SeasonsOverview() {
         </MotionReveal>
 
         <MotionReveal delay={0.06}>
-          <article className="group overflow-hidden rounded-3xl border border-slate-300/20 bg-[linear-gradient(160deg,rgba(17,42,56,0.9),rgba(9,26,41,0.82))]">
+          <article className="group kinetic-card overflow-hidden rounded-3xl border border-white/26 bg-[linear-gradient(160deg,rgba(56,119,101,0.9),rgba(21,72,82,0.76))]">
             <div className="relative h-56">
               <Image
                 src={seasonalData.summer.images[0].src}
@@ -52,9 +52,9 @@ export function SeasonsOverview() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 data-lightbox="true"
-                className="object-cover transition duration-500 group-hover:scale-[1.04]"
+                className="image-lift object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/72 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/52 via-transparent to-amber-100/10" />
             </div>
             <div className="p-5">
               <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-200/84">

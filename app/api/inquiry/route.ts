@@ -66,8 +66,8 @@ function validatePayload(payload: InquiryPayload): string[] {
   if (!payload.country) errors.push("Land fehlt.");
   if (!payload.arrival) errors.push("Anreise fehlt.");
   if (!payload.departure) errors.push("Abreise fehlt.");
-  if (payload.arrival && payload.departure && payload.arrival > payload.departure) {
-    errors.push("Abreise liegt vor der Anreise.");
+  if (payload.arrival && payload.departure && payload.arrival >= payload.departure) {
+    errors.push("Abreise liegt nicht nach der Anreise.");
   }
   if (!Number.isFinite(personsCount) || personsCount <= 0) {
     errors.push("Personenanzahl ist ungueltig.");

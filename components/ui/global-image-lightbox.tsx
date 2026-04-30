@@ -15,7 +15,7 @@ export function GlobalImageLightbox() {
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
-      const image = target.closest("img");
+      const image = target.closest("img[data-lightbox='true']");
       if (!(image instanceof HTMLImageElement)) return;
 
       const src = image.currentSrc || image.src;
@@ -33,13 +33,10 @@ export function GlobalImageLightbox() {
   }, []);
 
   useEffect(() => {
+    if (!activeImage) return;
+
     const previousOverflow = document.body.style.overflow;
-    if (activeImage) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = previousOverflow;
-      return;
-    }
+    document.body.style.overflow = "hidden";
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -71,17 +68,22 @@ export function GlobalImageLightbox() {
           event.stopPropagation();
           setActiveImage(null);
         }}
-      >
-        Schliessen
-      </button>
+        >
+          Schliessen
+        </button>
 
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={activeImage.src}
-        alt={activeImage.alt}
-        className="max-h-[90vh] max-w-[95vw] rounded-xl object-contain shadow-[0_35px_90px_-30px_rgba(0,0,0,0.95)]"
-        onClick={(event) => event.stopPropagation()}
-      />
+      <figure className="flex max-h-[92vh] flex-col items-center gap-3">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={activeImage.src}
+          alt={activeImage.alt}
+          className="max-h-[84vh] max-w-[95vw] rounded-xl object-contain shadow-[0_35px_90px_-30px_rgba(0,0,0,0.95)]"
+          onClick={(event) => event.stopPropagation()}
+        />
+        <figcaption className="max-w-[95vw] text-center text-xs uppercase tracking-[0.13em] text-slate-200/85">
+          {activeImage.alt}
+        </figcaption>
+      </figure>
     </div>
   );
 }
