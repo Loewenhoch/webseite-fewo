@@ -1,6 +1,6 @@
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
-import { pricingData } from "@/lib/site-data";
+import { bookingData, pricingData } from "@/lib/site-data";
 
 export function PricingSection() {
   return (
@@ -21,6 +21,35 @@ export function PricingSection() {
           </MotionReveal>
         ))}
       </div>
+
+      <MotionReveal delay={0.12}>
+        <div className="mt-6 flex flex-col gap-4 rounded-2xl border border-white/24 bg-white/12 p-5 backdrop-blur-md sm:flex-row sm:items-center sm:justify-between">
+          <div>
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-300/75">
+              Online buchen
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-100/82">{bookingData.text}</p>
+          </div>
+          <div className="flex shrink-0 flex-wrap gap-3">
+            <a
+              href={bookingData.primary.href}
+              target="_blank"
+              rel="noreferrer"
+              className="primary-btn inline-flex"
+            >
+              {bookingData.primary.label}
+            </a>
+            <a
+              href={bookingData.english.href}
+              target="_blank"
+              rel="noreferrer"
+              className="secondary-btn inline-flex"
+            >
+              {bookingData.english.label}
+            </a>
+          </div>
+        </div>
+      </MotionReveal>
     </SectionShell>
   );
 }

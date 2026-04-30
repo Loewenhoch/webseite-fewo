@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import { brandData, navData } from "@/lib/site-data";
+import { bookingData, brandData, navData } from "@/lib/site-data";
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,6 +57,14 @@ export function Header() {
               {item.label}
             </Link>
           ))}
+          <Link
+            href={bookingData.primary.href}
+            target="_blank"
+            rel="noreferrer"
+            className="ml-1 rounded-full bg-white px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.08em] text-slate-900 shadow-[0_14px_28px_-18px_rgba(0,0,0,0.9)] transition hover:-translate-y-0.5 hover:bg-slate-100"
+          >
+            {bookingData.primary.label}
+          </Link>
         </nav>
 
         {/* Hamburger */}
@@ -90,6 +98,15 @@ export function Header() {
                   {item.label}
                 </Link>
               ))}
+              <Link
+                href={bookingData.primary.href}
+                target="_blank"
+                rel="noreferrer"
+                onClick={() => setIsOpen(false)}
+                className="mt-2 rounded-xl bg-white px-3 py-2 text-sm font-bold text-slate-900 transition hover:bg-slate-100"
+              >
+                {bookingData.primary.label}
+              </Link>
             </nav>
           </motion.div>
         ) : null}

@@ -66,7 +66,12 @@ export function Hero() {
           <p className="mt-5 max-w-3xl text-base leading-relaxed text-slate-100/86 sm:text-lg">{heroData.subline}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <Link href={heroData.primaryCta.href} className="primary-btn">
+            <Link
+              href={heroData.primaryCta.href}
+              target="_blank"
+              rel="noreferrer"
+              className="primary-btn"
+            >
               {heroData.primaryCta.label}
             </Link>
             <Link href={heroData.secondaryCta.href} className="secondary-btn">

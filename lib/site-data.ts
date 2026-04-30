@@ -61,8 +61,8 @@ export const heroData = {
   headline: "Winterurlaub in Obertauern. Ruhig wohnen. Schnell auf der Piste.",
   subline:
     "Ferienwohnungen in zentraler Lage am Ende einer Privatstraße. Parkplatz direkt beim Haus, vollständige Ausstattung und kurze Wege im Skiurlaub.",
-  primaryCta: { label: "Jetzt anfragen", href: "#anfrage" },
-  secondaryCta: { label: "Preise ansehen", href: "#preise" },
+  primaryCta: { label: "Direkt buchen", href: "https://obertauern.capcorn.net/Ferienwohnungen%20Platzer-booking/Query?MB=5224&FL=20&zimDe=Ferienwohnung&LG=0" },
+  secondaryCta: { label: "Unverbindlich anfragen", href: "#anfrage" },
   images: [
     {
       src: "/assets/images/revision/winter/winter-ski-carving.jpg",
@@ -77,6 +77,19 @@ export const heroData = {
       alt: "Zwei Skifahrer mit Panoramablick über Obertauern",
     },
   ],
+} as const;
+
+export const bookingData = {
+  title: "Direkt buchen",
+  text: "Prüfen Sie freie Termine und buchen Sie die Ferienwohnung direkt im Buchungssystem.",
+  primary: {
+    label: "Direkt buchen",
+    href: "https://obertauern.capcorn.net/Ferienwohnungen%20Platzer-booking/Query?MB=5224&FL=20&zimDe=Ferienwohnung&LG=0",
+  },
+  english: {
+    label: "Book in English",
+    href: "https://obertauern.capcorn.net/Ferienwohnungen%20Platzer-booking/Query?MB=5224&FL=20&zimEn=Apartment&LG=1",
+  },
 } as const;
 
 export const accommodationIntroData = {

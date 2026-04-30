@@ -4,7 +4,7 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 import { CircleAlert, CircleCheck } from "lucide-react";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
-import { inquiryData } from "@/lib/site-data";
+import { bookingData, inquiryData } from "@/lib/site-data";
 
 type InquiryFormState = {
   firstName: string;
@@ -173,6 +173,30 @@ export function InquirySection() {
           <span className="section-eyebrow">Anfrage</span>
           <h2 className="headline-lg mt-4 text-white">{inquiryData.title}</h2>
           <p className="mt-4 text-sm leading-relaxed text-muted sm:text-base">{inquiryData.text}</p>
+          <div className="mt-7 rounded-2xl border border-white/24 bg-white/12 p-5 backdrop-blur-md">
+            <p className="text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-300/75">
+              {bookingData.title}
+            </p>
+            <p className="mt-2 text-sm leading-relaxed text-slate-100/82">{bookingData.text}</p>
+            <div className="mt-4 flex flex-wrap gap-3">
+              <a
+                href={bookingData.primary.href}
+                target="_blank"
+                rel="noreferrer"
+                className="primary-btn inline-flex"
+              >
+                {bookingData.primary.label}
+              </a>
+              <a
+                href={bookingData.english.href}
+                target="_blank"
+                rel="noreferrer"
+                className="secondary-btn inline-flex"
+              >
+                {bookingData.english.label}
+              </a>
+            </div>
+          </div>
         </MotionReveal>
 
         <MotionReveal delay={0.08}>
