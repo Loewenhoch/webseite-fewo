@@ -15,7 +15,7 @@ type GeoPoint = {
 
 type LocationDirectionsProps = {
   destinationQuery: string;
-  fallbackMapsUrl: string;
+  fallbackDirectionsUrl: string;
 };
 
 const FAST_FIX_OPTIONS: PositionOptions = {
@@ -109,7 +109,7 @@ function smoothedPoint(points: GeoPoint[]) {
   } satisfies GeoPoint;
 }
 
-export function LocationDirections({ destinationQuery, fallbackMapsUrl }: LocationDirectionsProps) {
+export function LocationDirections({ destinationQuery, fallbackDirectionsUrl }: LocationDirectionsProps) {
   const [status, setStatus] = useState<GeoStatus>("idle");
   const [point, setPoint] = useState<GeoPoint | null>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -299,14 +299,14 @@ export function LocationDirections({ destinationQuery, fallbackMapsUrl }: Locati
 
   const directionsUrl = useMemo(() => {
     if (!point) {
-      return fallbackMapsUrl;
+      return fallbackDirectionsUrl;
     }
 
     const origin = `${point.lat.toFixed(6)},${point.lng.toFixed(6)}`;
     const destination = encodeURIComponent(destinationQuery);
 
     return `https://www.google.com/maps/dir/?api=1&origin=${origin}&destination=${destination}&travelmode=driving`;
-  }, [destinationQuery, fallbackMapsUrl, point]);
+  }, [destinationQuery, fallbackDirectionsUrl, point]);
 
   const accuracyText = useMemo(() => {
     if (!point) {
@@ -348,7 +348,7 @@ export function LocationDirections({ destinationQuery, fallbackMapsUrl }: Locati
           className="primary-btn inline-flex items-center gap-2"
         >
           <Navigation size={15} aria-hidden="true" />
-          {point ? "Route von meinem Standort" : "Route in Google Maps"}
+          {point ? "Route von meinem Standort" : "Route planen"}
         </Link>
       </div>
 

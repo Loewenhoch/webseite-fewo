@@ -565,9 +565,10 @@ export const locationData = {
     "Die Unterkunft befindet sich in der Zirbenstraße 3 im Zentrum von Obertauern, am ruhigen Ende einer Privatstraße. Restaurants, Infrastruktur und Skigebiet sind gut erreichbar – der Parkplatz direkt beim Haus macht die Anreise unkompliziert.",
   addressLine: "Zirbenstraße 3, 5562 Obertauern",
   coordinates: "47.248932, 13.561535",
-  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=47.248932,13.561535",
+  googleMapsUrl: "https://www.google.com/maps/search/?api=1&query=Zirbenstra%C3%9Fe%203%2C%205562%20Obertauern%2C%20%C3%96sterreich",
+  googleMapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Zirbenstra%C3%9Fe%203%2C%205562%20Obertauern%2C%20%C3%96sterreich&travelmode=driving",
   googleMapsDestinationQuery: "Zirbenstraße 3, 5562 Obertauern, Österreich",
-  mapCtaLabel: "In Google Maps öffnen",
+  mapCtaLabel: "Adresse in Google Maps anzeigen",
   staticMapImage: "/assets/images/revision/documents/location-map-current.png",
 } as const;
 

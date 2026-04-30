@@ -10,12 +10,12 @@ const KEY_FACTS = [
   {
     icon: MapPin,
     label: "Adresse",
-    value: "Zirbenstraße 3, 5562 Obertauern",
+    value: locationData.addressLine,
   },
   {
     icon: Mountain,
     label: "Lage",
-    value: "Zentrum Obertauern · Ende einer Privatstraße",
+    value: "Zentrum Obertauern - Ende einer Privatstraße",
   },
   {
     icon: Car,
@@ -27,8 +27,6 @@ const KEY_FACTS = [
 export function LocationSection() {
   return (
     <SectionShell id="lage" className="section-band py-20 sm:py-28">
-
-      {/* Header */}
       <MotionReveal>
         <span className="section-eyebrow">Lage & Anreise</span>
         <h2 className="headline-lg mt-4 text-white">{locationData.title}</h2>
@@ -37,7 +35,6 @@ export function LocationSection() {
         </p>
       </MotionReveal>
 
-      {/* Key facts strip */}
       <MotionReveal delay={0.06}>
         <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-3">
           {KEY_FACTS.map(({ icon: Icon, label, value }) => (
@@ -59,14 +56,9 @@ export function LocationSection() {
         </div>
       </MotionReveal>
 
-      {/* Main content grid */}
       <div className="mt-8 grid gap-6 lg:grid-cols-[1fr_0.88fr] lg:gap-8">
-
-        {/* Left: Lageplan + Navigation */}
         <MotionReveal delay={0.08}>
           <div className="flex flex-col gap-5">
-
-            {/* Static map — clickable lightbox */}
             <div className="group kinetic-card relative cursor-zoom-in overflow-hidden rounded-2xl border border-white/26 bg-white/12">
               <Image
                 src={locationData.staticMapImage}
@@ -74,16 +66,22 @@ export function LocationSection() {
                 width={1400}
                 height={900}
                 data-lightbox="true"
+                data-lightbox-group="lage"
+                data-lightbox-title="Lageplan Zirbenstraße 3"
                 className="image-lift h-auto w-full object-cover"
               />
+              <div className="pointer-events-none absolute left-[51%] top-[47%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white p-1 shadow-[0_12px_28px_-12px_rgba(0,0,0,0.75)]">
+                <span className="block rounded-full bg-[#2f74ff] px-3 py-1.5 text-xs font-bold text-white shadow-inner">
+                  Zirbenstraße 3
+                </span>
+              </div>
               <div className="pointer-events-none absolute bottom-3 left-3">
                 <span className="rounded-full border border-white/22 bg-black/58 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-white backdrop-blur-sm">
-                  Zirbenstraße 3 · Obertauern
+                  Zirbenstraße 3 - Obertauern
                 </span>
               </div>
             </div>
 
-            {/* Navigation card */}
             <div className="rounded-2xl border border-white/22 bg-white/12 p-5 backdrop-blur-md">
               <p className="mb-4 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
                 Navigation & Anfahrt
@@ -99,49 +97,47 @@ export function LocationSection() {
               </Link>
               <LocationDirections
                 destinationQuery={locationData.googleMapsDestinationQuery}
-                fallbackMapsUrl={locationData.googleMapsUrl}
+                fallbackDirectionsUrl={locationData.googleMapsDirectionsUrl}
               />
             </div>
           </div>
         </MotionReveal>
 
-        {/* Right: Panorama + Info card */}
         <MotionReveal delay={0.13}>
           <div className="flex flex-col gap-5">
-
-            {/* Wide panorama — gives geographic context */}
             <div className="group kinetic-card relative cursor-zoom-in overflow-hidden rounded-2xl border border-white/26 bg-white/12">
               <Image
                 src="/assets/images/revision/winter/winter-obertauern-panorama-new.jpg"
-                alt="Obertauern – Blick auf den Ort im Winter"
+                alt="Obertauern - Blick auf den Ort im Winter"
                 width={1200}
                 height={800}
                 data-lightbox="true"
+                data-lightbox-group="lage"
+                data-lightbox-title="Obertauern im Winter"
                 className="image-lift h-64 w-full object-cover sm:h-72"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
               <div className="pointer-events-none absolute bottom-4 left-4">
                 <p className="text-sm font-bold uppercase tracking-[0.18em] text-white/95">Obertauern</p>
                 <p className="mt-0.5 text-[0.7rem] text-white/65">
-                  Salzburg, Österreich · ca. 1740 m ü. M.
+                  Salzburg, Österreich - ca. 1740 m ü. M.
                 </p>
               </div>
             </div>
 
-            {/* Info card */}
             <div className="rounded-2xl border border-white/22 bg-gradient-to-br from-[rgba(255,255,255,0.16)] to-[rgba(28,74,107,0.36)] p-5 backdrop-blur-md sm:p-6">
               <p className="mb-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-slate-400/75">
                 So finden Sie uns
               </p>
               <p className="text-sm leading-relaxed text-slate-100/80">
                 Obertauern liegt auf der Tauernpass-Straße (B99) zwischen Radstadt und Mauterndorf.
-                Die Zirbenstraße zweigt im Ortszentrum ab — das Haus liegt am Ende dieser Straße.
+                Die Zirbenstraße zweigt im Ortszentrum ab - das Haus liegt am Ende dieser Straße.
                 Navigationsgeräte führen Sie zuverlässig direkt zum Haus.
               </p>
               <div className="mt-4 flex items-center gap-2.5 rounded-xl border border-[#cfe0f2]/20 bg-slate-900/50 px-4 py-3">
                 <MapPin size={14} className="shrink-0 text-[#c8dff2]" aria-hidden="true" />
                 <span className="text-sm font-semibold text-slate-100/90">
-                  Zirbenstraße 3, 5562 Obertauern
+                  {locationData.addressLine}
                 </span>
               </div>
             </div>

@@ -1,19 +1,40 @@
 "use client";
 
 import Image from "next/image";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MotionReveal } from "@/components/ui/motion-reveal";
 import { SectionShell } from "@/components/ui/section-shell";
 import { galleryData, type GalleryCategoryId } from "@/lib/site-data";
 
+const GALLERY_HASH_PREFIX = "#galerie-";
+const categoryIds = new Set<GalleryCategoryId>(galleryData.categories.map((category) => category.id));
+
 export function GallerySection() {
   const [activeCategory, setActiveCategory] = useState<GalleryCategoryId>("b14");
+
+  useEffect(() => {
+    const readCategoryFromHash = () => {
+      const nextCategory = window.location.hash.replace(GALLERY_HASH_PREFIX, "") as GalleryCategoryId;
+      if (categoryIds.has(nextCategory)) {
+        setActiveCategory(nextCategory);
+      }
+    };
+
+    readCategoryFromHash();
+    window.addEventListener("hashchange", readCategoryFromHash);
+    return () => window.removeEventListener("hashchange", readCategoryFromHash);
+  }, []);
 
   const filteredImages = useMemo(
     () => galleryData.images.filter((image) => image.category === activeCategory),
     [activeCategory],
   );
+
+  const selectCategory = (category: GalleryCategoryId) => {
+    setActiveCategory(category);
+    window.history.replaceState(null, "", `${GALLERY_HASH_PREFIX}${category}`);
+  };
 
   return (
     <SectionShell id="galerie" className="section-band py-20 sm:py-24">
@@ -30,7 +51,7 @@ export function GallerySection() {
           <button
             key={category.id}
             type="button"
-            onClick={() => setActiveCategory(category.id)}
+            onClick={() => selectCategory(category.id)}
             className={`rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] transition ${
               activeCategory === category.id
                 ? "border border-white/60 bg-white/24 text-white shadow-[0_18px_34px_-26px_rgba(255,255,255,0.9)]"
@@ -61,6 +82,8 @@ export function GallerySection() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 33vw"
                 data-lightbox="true"
+                data-lightbox-group={`gallery-${image.category}`}
+                data-lightbox-title={image.title}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/58 via-transparent to-white/5" />

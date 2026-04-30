@@ -53,7 +53,7 @@ export function Hero() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_24%,rgba(255,223,154,0.22),transparent_34%),radial-gradient(circle_at_18%_78%,rgba(128,207,238,0.28),transparent_32%)]" />
       <SnowParticles />
 
-      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-5 pb-20 pt-36 sm:px-8 lg:px-12">
+      <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-5 pb-12 pt-28 sm:justify-end sm:px-8 sm:pb-20 sm:pt-36 lg:px-12">
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export function Hero() {
             </Link>
           </div>
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-3">
+          <div className="mt-8 hidden gap-3 sm:grid sm:grid-cols-3">
             <motion.article
               className="glass-panel kinetic-card rounded-2xl px-4 py-3"
               whileHover={{ y: -6 }}
@@ -93,7 +93,7 @@ export function Hero() {
               <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-100/88">
                 <Building2 size={14} /> Zentrale Lage
               </p>
-              <p className="mt-1 text-sm text-slate-100/84">Ruhig am Ende einer Privatstrasse gelegen</p>
+              <p className="mt-1 text-sm text-slate-100/84">Ruhig am Ende einer Privatstraße gelegen</p>
             </motion.article>
             <motion.article
               className="glass-panel kinetic-card rounded-2xl px-4 py-3"
@@ -103,7 +103,7 @@ export function Hero() {
               <p className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-slate-100/88">
                 <Car size={14} /> Direkt parken
               </p>
-              <p className="mt-1 text-sm text-slate-100/84">Parkplatze befinden sich unmittelbar beim Haus</p>
+              <p className="mt-1 text-sm text-slate-100/84">Parkplätze befinden sich unmittelbar beim Haus</p>
             </motion.article>
           </div>
         </motion.div>

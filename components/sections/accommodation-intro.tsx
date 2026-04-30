@@ -51,6 +51,8 @@ export function AccommodationIntro() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 44vw"
                 data-lightbox="true"
+                data-lightbox-group="unterkunft"
+                data-lightbox-title={accommodationIntroData.images[1].alt}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/34 via-transparent to-white/10" />
@@ -63,6 +65,8 @@ export function AccommodationIntro() {
                 fill
                 sizes="240px"
                 data-lightbox="true"
+                data-lightbox-group="unterkunft"
+                data-lightbox-title={accommodationIntroData.images[0].alt}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/34 to-transparent" />
@@ -75,6 +79,8 @@ export function AccommodationIntro() {
                 fill
                 sizes="208px"
                 data-lightbox="true"
+                data-lightbox-group="unterkunft"
+                data-lightbox-title={accommodationIntroData.images[2].alt}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/34 to-transparent" />

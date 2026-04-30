@@ -191,6 +191,8 @@ export default function SkigebietPage() {
                 width={1600}
                 height={900}
                 data-lightbox="true"
+                data-lightbox-group="pistenplan"
+                data-lightbox-title="Pistenübersicht Obertauern"
                 className="h-auto w-full object-cover transition-transform duration-700 group-hover:scale-[1.015]"
               />
               <div className="pointer-events-none absolute bottom-4 left-4">

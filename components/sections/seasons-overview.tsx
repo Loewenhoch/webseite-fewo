@@ -25,6 +25,8 @@ export function SeasonsOverview() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 data-lightbox="true"
+                data-lightbox-group="winter"
+                data-lightbox-title={seasonalData.winter.title}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/56 via-transparent to-sky-100/10" />
@@ -52,6 +54,8 @@ export function SeasonsOverview() {
                 fill
                 sizes="(max-width: 1024px) 100vw, 48vw"
                 data-lightbox="true"
+                data-lightbox-group="sommer"
+                data-lightbox-title={seasonalData.summer.title}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/52 via-transparent to-amber-100/10" />

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import {
@@ -58,7 +59,15 @@ function ApartmentPhotoPanel({ apartment }: { apartment: ApartmentInfo }) {
         <p className="text-[0.68rem] font-bold uppercase tracking-[0.16em] text-slate-300/75">
           {apartment.title}
         </p>
-        <p className="mt-1 text-sm font-semibold text-white">{apartment.subtitle}</p>
+        <div className="mt-1 flex flex-wrap items-center justify-between gap-2">
+          <p className="text-sm font-semibold text-white">{apartment.subtitle}</p>
+          <Link
+            href={`#galerie-${apartment.id}`}
+            className="text-[0.66rem] font-bold uppercase tracking-[0.13em] text-slate-200/75 transition hover:text-white"
+          >
+            Zur Galerie
+          </Link>
+        </div>
       </div>
 
       <div
@@ -82,6 +91,8 @@ function ApartmentPhotoPanel({ apartment }: { apartment: ApartmentInfo }) {
               sizes="(max-width: 1024px) 100vw, 440px"
               className="image-lift object-cover"
               data-lightbox="true"
+              data-lightbox-group={`apartment-${apartment.id}`}
+              data-lightbox-title={`${apartment.title} - ${activeIndex + 1} / ${images.length}`}
             />
           </motion.div>
         </AnimatePresence>
