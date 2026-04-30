@@ -97,7 +97,7 @@ export const accommodationIntroData = {
       alt: "Hausansicht mit Parkplatz im Winter",
     },
     {
-      src: "/assets/images/revision/house/house-front-dog.jpg",
+      src: "/assets/images/revision/house/house-unterkunft-current.jpg",
       alt: "Hausansicht mit Zufahrt und Parkplatz vor dem Gebäude",
     },
     {
