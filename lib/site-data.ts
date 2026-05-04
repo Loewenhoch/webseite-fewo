@@ -591,7 +591,7 @@ export const locationData = {
   googleMapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Zirbenstra%C3%9Fe%203%2C%205562%20Obertauern%2C%20%C3%96sterreich&travelmode=driving",
   googleMapsDestinationQuery: "Zirbenstraße 3, 5562 Obertauern, Österreich",
   mapCtaLabel: "Adresse in Google Maps anzeigen",
-  staticMapImage: "/assets/images/revision/documents/location-map-current.png",
+  staticMapImage: "/assets/images/revision/documents/location-map-zirbenstrasse-3.png",
 } as const;
 
 export const inquiryData = {

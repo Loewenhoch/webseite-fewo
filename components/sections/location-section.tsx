@@ -70,11 +70,6 @@ export function LocationSection() {
                 data-lightbox-title="Lageplan Zirbenstraße 3"
                 className="image-lift h-auto w-full object-cover"
               />
-              <div className="pointer-events-none absolute left-[51%] top-[47%] -translate-x-1/2 -translate-y-1/2 rounded-full bg-white p-1 shadow-[0_12px_28px_-12px_rgba(0,0,0,0.75)]">
-                <span className="block rounded-full bg-[#2f74ff] px-3 py-1.5 text-xs font-bold text-white shadow-inner">
-                  Zirbenstraße 3
-                </span>
-              </div>
               <div className="pointer-events-none absolute bottom-3 left-3">
                 <span className="rounded-full border border-white/22 bg-black/58 px-3 py-1.5 text-[0.68rem] font-semibold uppercase tracking-[0.13em] text-white backdrop-blur-sm">
                   Zirbenstraße 3 - Obertauern
