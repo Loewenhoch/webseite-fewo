@@ -6,6 +6,11 @@ import { accommodationIntroData, apartmentData } from "@/lib/site-data";
 
 export function AccommodationIntro() {
   const apartments = [apartmentData.b14, apartmentData.b4];
+  const lightboxItems = accommodationIntroData.images.map((image) => ({
+    src: image.src,
+    alt: image.alt,
+    title: image.alt,
+  }));
 
   return (
     <SectionShell id="unterkunft" className="section-band py-20 sm:py-24">
@@ -53,6 +58,8 @@ export function AccommodationIntro() {
                 data-lightbox="true"
                 data-lightbox-group="unterkunft"
                 data-lightbox-title={accommodationIntroData.images[1].alt}
+                data-lightbox-index={1}
+                data-lightbox-items={JSON.stringify(lightboxItems)}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/34 via-transparent to-white/10" />
@@ -67,6 +74,8 @@ export function AccommodationIntro() {
                 data-lightbox="true"
                 data-lightbox-group="unterkunft"
                 data-lightbox-title={accommodationIntroData.images[0].alt}
+                data-lightbox-index={0}
+                data-lightbox-items={JSON.stringify(lightboxItems)}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/34 to-transparent" />
@@ -81,6 +90,8 @@ export function AccommodationIntro() {
                 data-lightbox="true"
                 data-lightbox-group="unterkunft"
                 data-lightbox-title={accommodationIntroData.images[2].alt}
+                data-lightbox-index={2}
+                data-lightbox-items={JSON.stringify(lightboxItems)}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/34 to-transparent" />

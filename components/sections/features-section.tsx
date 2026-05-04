@@ -32,6 +32,11 @@ function ApartmentPhotoPanel({ apartment }: { apartment: ApartmentInfo }) {
   const [paused, setPaused] = useState(false);
   const images = apartment.images;
   const current = images[activeIndex];
+  const lightboxItems = images.map((image) => ({
+    src: image.src,
+    alt: image.alt,
+    title: image.alt,
+  }));
 
   useEffect(() => {
     if (paused) return;
@@ -93,6 +98,8 @@ function ApartmentPhotoPanel({ apartment }: { apartment: ApartmentInfo }) {
               data-lightbox="true"
               data-lightbox-group={`apartment-${apartment.id}`}
               data-lightbox-title={`${apartment.title} - ${activeIndex + 1} / ${images.length}`}
+              data-lightbox-index={activeIndex}
+              data-lightbox-items={JSON.stringify(lightboxItems)}
             />
           </motion.div>
         </AnimatePresence>

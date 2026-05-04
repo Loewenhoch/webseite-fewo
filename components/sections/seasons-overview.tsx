@@ -5,6 +5,17 @@ import { SectionShell } from "@/components/ui/section-shell";
 import { seasonalData } from "@/lib/site-data";
 
 export function SeasonsOverview() {
+  const winterLightboxItems = seasonalData.winter.images.map((image) => ({
+    src: image.src,
+    alt: image.alt,
+    title: image.alt,
+  }));
+  const summerLightboxItems = seasonalData.summer.images.map((image) => ({
+    src: image.src,
+    alt: image.alt,
+    title: image.alt,
+  }));
+
   return (
     <SectionShell id="erlebnis" className="section-band py-20 sm:py-24">
       <MotionReveal>
@@ -27,6 +38,8 @@ export function SeasonsOverview() {
                 data-lightbox="true"
                 data-lightbox-group="winter"
                 data-lightbox-title={seasonalData.winter.title}
+                data-lightbox-index={0}
+                data-lightbox-items={JSON.stringify(winterLightboxItems)}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/56 via-transparent to-sky-100/10" />
@@ -56,6 +69,8 @@ export function SeasonsOverview() {
                 data-lightbox="true"
                 data-lightbox-group="sommer"
                 data-lightbox-title={seasonalData.summer.title}
+                data-lightbox-index={0}
+                data-lightbox-items={JSON.stringify(summerLightboxItems)}
                 className="image-lift object-cover"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-950/52 via-transparent to-amber-100/10" />

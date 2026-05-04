@@ -12,6 +12,11 @@ import { SnowParticles } from "@/components/ui/snow-particles";
 export function Hero() {
   const [activeIndex, setActiveIndex] = useState(0);
   const sectionRef = useRef<HTMLElement | null>(null);
+  const lightboxItems = heroData.images.map((image) => ({
+    src: image.src,
+    alt: image.alt,
+    title: image.alt,
+  }));
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start start", "end start"],
@@ -36,7 +41,13 @@ export function Hero() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 1.1, ease: "easeOut" }}
-          className="absolute inset-0"
+          className="absolute inset-0 cursor-zoom-in"
+          data-lightbox="true"
+          data-lightbox-group="hero"
+          data-lightbox-src={heroData.images[activeIndex].src}
+          data-lightbox-alt={heroData.images[activeIndex].alt}
+          data-lightbox-index={activeIndex}
+          data-lightbox-items={JSON.stringify(lightboxItems)}
         >
           <Image
             src={heroData.images[activeIndex].src}
@@ -49,8 +60,8 @@ export function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(10,24,42,0.74),rgba(17,49,78,0.48)_44%,rgba(239,246,251,0.08)_70%,rgba(8,22,38,0.38)_100%)]" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_24%,rgba(255,223,154,0.22),transparent_34%),radial-gradient(circle_at_18%_78%,rgba(128,207,238,0.28),transparent_32%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(105deg,rgba(10,24,42,0.74),rgba(17,49,78,0.48)_44%,rgba(239,246,251,0.08)_70%,rgba(8,22,38,0.38)_100%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_24%,rgba(255,223,154,0.22),transparent_34%),radial-gradient(circle_at_18%_78%,rgba(128,207,238,0.28),transparent_32%)]" />
       <SnowParticles />
 
       <div className="relative mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-center px-5 pb-12 pt-28 sm:justify-end sm:px-8 sm:pb-20 sm:pt-36 lg:px-12">

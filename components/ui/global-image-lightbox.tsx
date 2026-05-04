@@ -10,18 +10,64 @@ type ActiveImage = {
   group: string;
   index: number;
   total: number;
+  items: LightboxItem[];
 };
 
-type LightboxImage = ActiveImage;
+type LightboxItem = {
+  src: string;
+  alt: string;
+  title?: string;
+};
 
-function readImageData(image: HTMLImageElement, index: number, total: number): LightboxImage {
+type EncodedLightboxItem = Partial<LightboxItem>;
+
+function getElementAlt(element: HTMLElement) {
+  return element instanceof HTMLImageElement ? element.alt : element.dataset.lightboxAlt || "Bild";
+}
+
+function getElementSrc(element: HTMLElement) {
+  return element instanceof HTMLImageElement ? element.currentSrc || element.src : element.dataset.lightboxSrc || "";
+}
+
+function parseLightboxItems(element: HTMLElement): LightboxItem[] | null {
+  const encodedItems = element.dataset.lightboxItems;
+  if (!encodedItems) return null;
+
+  try {
+    const items = JSON.parse(encodedItems) as EncodedLightboxItem[];
+    const cleanItems = items
+      .filter((item): item is LightboxItem => typeof item.src === "string" && item.src.length > 0)
+      .map((item) => ({
+        src: item.src,
+        alt: item.alt || getElementAlt(element),
+        title: item.title,
+      }));
+
+    return cleanItems.length > 0 ? cleanItems : null;
+  } catch {
+    return null;
+  }
+}
+
+function readImageData(element: HTMLElement, index: number, total: number, items?: LightboxItem[]): ActiveImage {
+  const src = getElementSrc(element);
+  const fallbackItem = {
+    src,
+    alt: getElementAlt(element),
+    title: element.dataset.lightboxTitle,
+  };
+  const lightboxItems = items && items.length > 0 ? items : [fallbackItem];
+  const safeIndex = Math.min(Math.max(index, 0), lightboxItems.length - 1);
+  const activeItem = lightboxItems[safeIndex] || fallbackItem;
+
   return {
-    src: image.currentSrc || image.src,
-    alt: image.alt || "Bild",
-    title: image.dataset.lightboxTitle,
-    group: image.dataset.lightboxGroup || "page",
-    index,
-    total,
+    src: activeItem.src,
+    alt: activeItem.alt,
+    title: activeItem.title,
+    group: element.dataset.lightboxGroup || "page",
+    index: safeIndex,
+    total: items && items.length > 0 ? lightboxItems.length : total,
+    items: lightboxItems,
   };
 }
 
@@ -40,19 +86,45 @@ export function GlobalImageLightbox() {
       const target = event.target as HTMLElement | null;
       if (!target) return;
 
-      const image = target.closest("img[data-lightbox='true']");
-      if (!(image instanceof HTMLImageElement)) return;
+      const lightboxElement = target.closest("[data-lightbox='true']");
+      if (!(lightboxElement instanceof HTMLElement)) return;
 
-      const src = image.currentSrc || image.src;
+      const src = getElementSrc(lightboxElement);
       if (!src) return;
 
-      const group = image.dataset.lightboxGroup || "page";
+      const group = lightboxElement.dataset.lightboxGroup || "page";
+      const customItems = parseLightboxItems(lightboxElement);
+      const customIndex = Number.parseInt(lightboxElement.dataset.lightboxIndex || "", 10);
+
+      if (customItems) {
+        event.preventDefault();
+        setActiveImage(
+          readImageData(
+            lightboxElement,
+            Number.isNaN(customIndex) ? 0 : customIndex,
+            customItems.length,
+            customItems,
+          ),
+        );
+        return;
+      }
+
       const groupImages = findGroupImages(group);
-      const images = groupImages.length > 0 ? groupImages : [image];
-      const imageIndex = Math.max(0, images.indexOf(image));
+      if (groupImages.length === 0) {
+        event.preventDefault();
+        setActiveImage(readImageData(lightboxElement, 0, 1));
+        return;
+      }
+
+      const imageIndex = Math.max(0, groupImages.indexOf(lightboxElement as HTMLImageElement));
+      const groupItems = groupImages.map((groupImage) => ({
+        src: groupImage.currentSrc || groupImage.src,
+        alt: groupImage.alt || "Bild",
+        title: groupImage.dataset.lightboxTitle,
+      }));
 
       event.preventDefault();
-      setActiveImage(readImageData(image, imageIndex, images.length));
+      setActiveImage(readImageData(groupImages[imageIndex], imageIndex, groupItems.length, groupItems));
     };
 
     document.addEventListener("click", handleDocumentClick, true);
@@ -62,6 +134,18 @@ export function GlobalImageLightbox() {
   const move = useCallback((direction: -1 | 1) => {
     setActiveImage((current) => {
       if (!current || current.total <= 1) return current;
+
+      if (current.items.length > 1) {
+        const nextIndex = (current.index + direction + current.items.length) % current.items.length;
+        const nextItem = current.items[nextIndex];
+
+        return {
+          ...current,
+          ...nextItem,
+          index: nextIndex,
+          total: current.items.length,
+        };
+      }
 
       const images = findGroupImages(current.group);
 

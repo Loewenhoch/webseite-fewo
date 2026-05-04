@@ -30,6 +30,15 @@ export function GallerySection() {
     () => galleryData.images.filter((image) => image.category === activeCategory),
     [activeCategory],
   );
+  const lightboxItems = useMemo(
+    () =>
+      filteredImages.map((image) => ({
+        src: image.src,
+        alt: image.alt,
+        title: image.title,
+      })),
+    [filteredImages],
+  );
 
   const selectCategory = (category: GalleryCategoryId) => {
     setActiveCategory(category);
@@ -74,6 +83,13 @@ export function GallerySection() {
             exit={{ opacity: 0, y: -20, scale: 0.96 }}
             transition={{ duration: 0.42, delay: index * 0.035, ease: [0.2, 0.75, 0.2, 1] }}
             className="group kinetic-card overflow-hidden rounded-2xl border border-white/24 bg-white/12 transition hover:border-white/44"
+            data-lightbox="true"
+            data-lightbox-group={`gallery-${image.category}`}
+            data-lightbox-src={image.src}
+            data-lightbox-alt={image.alt}
+            data-lightbox-title={image.title}
+            data-lightbox-index={index}
+            data-lightbox-items={JSON.stringify(lightboxItems)}
           >
             <div className="relative h-56 sm:h-60">
               <Image
@@ -84,10 +100,12 @@ export function GallerySection() {
                 data-lightbox="true"
                 data-lightbox-group={`gallery-${image.category}`}
                 data-lightbox-title={image.title}
+                data-lightbox-index={index}
+                data-lightbox-items={JSON.stringify(lightboxItems)}
                 className="image-lift object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/58 via-transparent to-white/5" />
-              <p className="absolute bottom-3 left-3 right-3 rounded-full border border-white/22 bg-black/24 px-3 py-1.5 text-sm text-slate-100/92 backdrop-blur-md">
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-slate-950/58 via-transparent to-white/5" />
+              <p className="pointer-events-none absolute bottom-3 left-3 right-3 rounded-full border border-white/22 bg-black/24 px-3 py-1.5 text-sm text-slate-100/92 backdrop-blur-md">
                 {image.title}
               </p>
             </div>
