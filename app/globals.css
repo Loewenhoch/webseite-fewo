@@ -233,8 +233,36 @@ body {
 }
 
 .kinetic-card:hover {
-  transform: translateY(-7px) rotateX(1deg) rotateY(-1deg);
+  transform: translateY(-7px) rotateX(var(--tilt-x, 1deg)) rotateY(var(--tilt-y, -1deg));
   box-shadow: 0 34px 80px -42px rgb(2 10 22 / 0.9);
+}
+
+@media (pointer: fine) and (min-width: 900px) {
+  .kinetic-card,
+  .lux-card {
+    position: relative;
+  }
+
+  .kinetic-card::after,
+  .lux-card::after {
+    content: "";
+    pointer-events: none;
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+      18rem circle at var(--glow-x, 50%) var(--glow-y, 50%),
+      rgb(255 255 255 / 0.16),
+      transparent 44%
+    );
+    opacity: 0;
+    transition: opacity 0.28s ease;
+  }
+
+  .kinetic-card[data-interactive-active="true"]::after,
+  .lux-card[data-interactive-active="true"]::after {
+    opacity: 1;
+  }
 }
 
 .image-lift {

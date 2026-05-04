@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 type ActiveImage = {
@@ -80,6 +80,8 @@ function findGroupImages(group: string) {
 
 export function GlobalImageLightbox() {
   const [activeImage, setActiveImage] = useState<ActiveImage | null>(null);
+  const touchStartX = useRef<number | null>(null);
+  const closeButtonRef = useRef<HTMLButtonElement | null>(null);
 
   useEffect(() => {
     const handleDocumentClick = (event: MouseEvent) => {
@@ -161,6 +163,7 @@ export function GlobalImageLightbox() {
 
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = "hidden";
+    window.setTimeout(() => closeButtonRef.current?.focus(), 0);
 
     const handleEscape = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
@@ -190,8 +193,24 @@ export function GlobalImageLightbox() {
       aria-label="Bildgrossansicht"
       className="fixed inset-0 z-[220] flex items-center justify-center bg-black/90 p-4"
       onClick={() => setActiveImage(null)}
+      onTouchStart={(event) => {
+        touchStartX.current = event.touches[0]?.clientX ?? null;
+      }}
+      onTouchEnd={(event) => {
+        const startX = touchStartX.current;
+        touchStartX.current = null;
+        if (startX === null || activeImage.total <= 1) return;
+
+        const endX = event.changedTouches[0]?.clientX ?? startX;
+        const deltaX = endX - startX;
+        if (Math.abs(deltaX) < 48) return;
+
+        event.stopPropagation();
+        move(deltaX > 0 ? -1 : 1);
+      }}
     >
       <button
+        ref={closeButtonRef}
         type="button"
         aria-label="Bildgrossansicht schliessen"
         className="absolute right-4 top-4 inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/35 bg-black/45 text-white transition hover:bg-black/70"
@@ -246,6 +265,41 @@ export function GlobalImageLightbox() {
             </span>
           ) : null}
         </figcaption>
+
+        {activeImage.total > 1 ? (
+          <div
+            className="flex max-w-[92vw] gap-2 overflow-x-auto rounded-2xl border border-white/12 bg-black/32 p-2 backdrop-blur-md"
+            onClick={(event) => event.stopPropagation()}
+          >
+            {activeImage.items.map((item, index) => (
+              <button
+                key={`${item.src}-${index}`}
+                type="button"
+                aria-label={`Bild ${index + 1} anzeigen`}
+                className={`relative h-12 w-16 shrink-0 overflow-hidden rounded-lg border transition sm:h-14 sm:w-20 ${
+                  index === activeImage.index
+                    ? "border-white/80 opacity-100"
+                    : "border-white/18 opacity-62 hover:opacity-100"
+                }`}
+                onClick={() =>
+                  setActiveImage((current) =>
+                    current
+                      ? {
+                          ...current,
+                          ...item,
+                          index,
+                          total: current.items.length,
+                        }
+                      : current,
+                  )
+                }
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={item.src} alt="" className="h-full w-full object-cover" />
+              </button>
+            ))}
+          </div>
+        ) : null}
       </figure>
     </div>
   );

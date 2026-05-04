@@ -10,6 +10,7 @@ import { bookingData, brandData, navData } from "@/lib/site-data";
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [activeHash, setActiveHash] = useState("");
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 32);
@@ -18,6 +19,51 @@ export function Header() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    const anchorItems = navData.filter((item) => item.href.startsWith("#"));
+    const sectionIds = anchorItems.map((item) => item.href.slice(1));
+    let frame = 0;
+
+    const updateActiveHash = () => {
+      const scrollPosition = window.scrollY + 170;
+      const activeId = sectionIds.reduce<string>((current, id) => {
+        const section = document.getElementById(id);
+        if (!section || section.offsetTop > scrollPosition) return current;
+        return id;
+      }, "");
+
+      setActiveHash(activeId ? `#${activeId}` : "");
+    };
+
+    const onScroll = () => {
+      window.cancelAnimationFrame(frame);
+      frame = window.requestAnimationFrame(updateActiveHash);
+    };
+
+    updateActiveHash();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("hashchange", updateActiveHash);
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("hashchange", updateActiveHash);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setIsOpen(false);
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [isOpen]);
 
   return (
     <header className="fixed inset-x-0 top-0 z-50 px-4 pt-4 sm:px-7">
@@ -52,7 +98,11 @@ export function Header() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-[0.67rem] font-semibold uppercase tracking-[0.08em] text-slate-200/80 transition-colors hover:text-white"
+              className={`rounded-full px-2.5 py-1.5 text-[0.67rem] font-semibold uppercase tracking-[0.08em] transition ${
+                activeHash === item.href
+                  ? "bg-white/14 text-white"
+                  : "text-slate-200/80 hover:bg-white/8 hover:text-white"
+              }`}
             >
               {item.label}
             </Link>
@@ -93,7 +143,11 @@ export function Header() {
                   key={item.href}
                   href={item.href}
                   onClick={() => setIsOpen(false)}
-                  className="rounded-xl px-3 py-2 text-sm text-slate-100/90 transition hover:bg-slate-800/70"
+                  className={`rounded-xl px-3 py-2 text-sm transition ${
+                    activeHash === item.href
+                      ? "bg-white/14 text-white"
+                      : "text-slate-100/90 hover:bg-slate-800/70"
+                  }`}
                 >
                   {item.label}
                 </Link>
