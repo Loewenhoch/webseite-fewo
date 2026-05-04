@@ -109,7 +109,7 @@ export function LocationSection() {
                 data-lightbox="true"
                 data-lightbox-group="lage"
                 data-lightbox-title="Anreise nach Obertauern"
-                className="image-lift h-64 w-full object-cover sm:h-72"
+                className="image-lift h-auto w-full object-contain"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
               <div className="pointer-events-none absolute bottom-4 left-4">
