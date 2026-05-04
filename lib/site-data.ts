@@ -527,11 +527,20 @@ export const galleryData: {
 
 export const pricingData = {
   title: "Preise",
-  rows: [
-    { label: "Wohnung B14", value: "201,67 EUR pro Nacht" },
-    { label: "Wohnung B4", value: "201,67 EUR pro Nacht" },
-    { label: "Betten Wohnung B14", value: "6 Betten" },
-    { label: "Betten Wohnung B4", value: "6 Betten" },
+  intro: "Die Preise gelten gleichermaßen für Wohnung B14 und Wohnung B4.",
+  seasonRows: [
+    { label: "Hauptsaison", value: "250 EUR", note: "pro Nacht" },
+    { label: "Nebensaison", value: "180 EUR", note: "pro Nacht" },
+  ],
+  feeRows: [
+    { label: "Wäschegarnitur", value: "15 EUR", note: "pro Garnitur" },
+    { label: "Reinigungskostenanteil Wohnung", value: "50 EUR", note: "einmalig" },
+  ],
+  laundryIncluded: [
+    "Badetuch",
+    "Bettwäsche",
+    "Leintuch",
+    "Handtuch",
   ],
 } as const;
 
