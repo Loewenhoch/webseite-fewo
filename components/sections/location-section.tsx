@@ -107,13 +107,13 @@ export function LocationSection() {
           <div className="flex flex-col gap-5">
             <div className="group kinetic-card relative cursor-zoom-in overflow-hidden rounded-2xl border border-white/26 bg-white/12">
               <Image
-                src="/assets/images/revision/winter/winter-obertauern-panorama-new.jpg"
-                alt="Obertauern - Blick auf den Ort im Winter"
-                width={1200}
-                height={800}
+                src="/assets/images/revision/documents/obertauern-anreise.png"
+                alt="Anreise nach Obertauern"
+                width={1000}
+                height={776}
                 data-lightbox="true"
                 data-lightbox-group="lage"
-                data-lightbox-title="Obertauern im Winter"
+                data-lightbox-title="Anreise nach Obertauern"
                 className="image-lift h-64 w-full object-cover sm:h-72"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-black/10 to-transparent" />
